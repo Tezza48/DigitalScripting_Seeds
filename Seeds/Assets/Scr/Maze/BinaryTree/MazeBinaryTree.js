@@ -1,15 +1,17 @@
 ﻿#pragma strict
 
-public class MazeBinaryTree extends Game {
+public class MazeBinaryTree {
 
-      public function GenerateMaze (width : int, height : int) : Cell[,] {
+      public function GenerateMaze (width : int, height : int, seed : int) : Cell[,] {
+
+            Random.seed = seed;
 
             var cells = new Cell[width,height];
 
             //for height
-            for (var y = 1; y < mazeHeight; y++){
+            for (var y = 1; y < height; y++){
             //for width
-                  for (var x = 1; x < mazeWidth; x++){
+                  for (var x = 1; x < width; x++){
                         var dirA : boolean[] = new boolean[2];
                         var north : boolean;//true = north, false = west
                         var dirCount : int = 0;

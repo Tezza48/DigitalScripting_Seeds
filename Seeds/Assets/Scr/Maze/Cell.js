@@ -36,9 +36,18 @@ public class Cell {
       }
 
       function GetAntiClockwiseExit () : int {
-            if (north) return 0;
-            else if (east) return 1;
-            else if (south) return 2;
-            else if (west) return 3;
+            if (north) return 1;
+            else if (east) return 2;
+            else if (south) return 3;
+            else if (west) return 4;
+            else return 0;
+      }
+
+      public function IsHallway () : boolean {
+            if (numExits == 2 && ((north && south) || (east && west))) {
+                  return true;
+            } else {
+                  return false;
+            }
       }
 }

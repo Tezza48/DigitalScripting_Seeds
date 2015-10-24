@@ -1,8 +1,7 @@
 #pragma strict
 public class Tile extends Game{
-      public var tile : GameObject;
-      public var orientation : int;
-
+      private var tile : GameObject;
+      private var orientation : int;
       private var numExits : int;
       private var north : boolean;
       private var east : boolean;
@@ -15,12 +14,16 @@ public class Tile extends Game{
             this.orientation = orientation;
       }
 
-      public function isHallway () : boolean {
+      public function IsHallway () : boolean {
             if (numExits == 2 && ((north && south) || (east && west))) {
                   return true;
             } else {
                   return false;
             }
+      }
+
+      public function GetTile () : GameObject {
+            return tile;
       }
 
 }
