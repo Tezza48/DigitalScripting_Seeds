@@ -7,6 +7,7 @@ public class MazeParser extends Game {
             for (var y = 0; y < mazeHeight; y++) {
                   for (var x = 0; x < mazeWidth; x++) {
                         //work out how many exits the cell has
+                        
                         //work out the orientation and
 
                   }

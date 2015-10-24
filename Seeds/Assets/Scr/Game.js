@@ -7,15 +7,17 @@ public class Game extends MonoBehaviour {
       public var mazeHeight : int;
       public var seed : int;
 
+      public var maze : MazeBinaryTree;
 
-      private var Cell : Cell;
-      private var MazeBinaryTree : MazeBinaryTree;
-      private var MazeParser : MazeParser;
-      private var Tiles : Tiles;
-      private var Tile : Tile;
+      // private var Cell : Cell;
+      // private var MazeBinaryTree : MazeBinaryTree;
+      // private var MazeParser : MazeParser;
+      // private var Tiles : Tiles;
+      // private var Tile : Tile;
 
       function Start () {
-            //MazeBinaryTree.GenerateMaze(mazeWidth, mazeHeight);
+            maze = new MazeBinaryTree();
+            maze.GenerateMaze(mazeWidth, mazeHeight);
       }
 
       function Update () {
