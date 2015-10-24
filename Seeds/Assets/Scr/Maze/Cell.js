@@ -4,18 +4,18 @@ public class Cell {
             if (north) north = true;
             if (!north) west = true;
       }
-      public var numExits : int;
 
+      private var numExits : int;
       private var north : boolean;
       private var east : boolean;
       private var south : boolean;
       private var west : boolean;
 
       public function Cell () {
-            numExits = NumExits();
+            numExits = SetNumExits();
       }
       // How many exits does the cell have
-      function NumExits () : int {
+      function SetNumExits () : int {
             var i = 0;
             i += (north) ? 1 : 0;
             i += (east) ? 1 : 0;
@@ -29,5 +29,16 @@ public class Cell {
       }
       function SetS () {
         south = true;
+      }
+
+      function GetNumExits () : int{
+            return this.numExits;
+      }
+
+      function GetAntiClockwiseExit () : int {
+            if (north) return 0;
+            else if (east) return 1;
+            else if (south) return 2;
+            else if (west) return 3;
       }
 }
