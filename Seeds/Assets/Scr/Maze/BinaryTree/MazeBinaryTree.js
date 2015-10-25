@@ -46,9 +46,9 @@ public class MazeBinaryTree {
                         //  cells[x, y].W()
                           cells[x, y] = new Cell(false);
                         //  cells [x-1, y].E()
-                          cells[x-1, y].SetE();
+                        //   cells[x-1, y].SetE();
                         }
-                        }
+                  }
             }
             return cells;
       }
