@@ -2,8 +2,8 @@
 
 public class Game extends MonoBehaviour {
 
-      public var width : int = 5;
-      public var height : int = 5;
+      private var width : int = 10;
+      private var height : int = 10;
       public var tileSize : int;
 
       private var generator : MazeGenerator;

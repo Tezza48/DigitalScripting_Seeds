@@ -9,13 +9,13 @@ public class MazeGenerator extends MonoBehaviour {
                         if (x + y == 0) {
                               cells[x,y] = new Cell();
                         } else if (x == 0) {
-                              cells[x,y] = new Cell(false);// add west exit
-                              cells[x,y-1].SetEast(true);
+                              cells[x,y] = new Cell(true);// add west exit
+                              if (y < height )cells[x,y-1].SetSouth(true);
                         } else if (y == 0) {
-                              cells[x,y] = new Cell(true);
-                              cells[x-1,y].SetSouth(true);
+                              cells[x,y] = new Cell(false);
+                              if (x < width) cells[x-1,y].SetEast(true);
                         } else {
-                              goNorth = Random.Range(0, 1) > 0.5 ? true : false;
+                              goNorth = Random.Range(0f, 1f) > 0.5 ? true : false;
                               if (goNorth) {
                                     cells[x,y] = new Cell(true);
                                     cells[x,y-1].SetSouth(true);

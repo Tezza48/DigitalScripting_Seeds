@@ -44,6 +44,10 @@ public class Cell{
       }
 
       public function IsHallway () : boolean {
+      	if (GetFirstExit() >= 2) {
+      		return false;
+  		} else {
             return exits[GetFirstExit() + 2];
+        }
       }
 }
