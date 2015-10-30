@@ -18,8 +18,8 @@ public class MazeParser extends MonoBehaviour {
                         	Debug.LogWarning("cell ( "+ x + ", " + y + " ) has " + numExits + " exits!");
                         }*/
                         firstExit = cells[x,y].GetFirstExit();
-                        position = new Vector3(x * tileSize, 0, -y * tileSize);
-                        rotation = new Vector3(0, -90 * firstExit, 0);
+                        position = new Vector2(x * tileSize, -y * tileSize);
+                        rotation = new Vector3(0, 0, -90 * firstExit);
                         //var currentCell = cells[x,y];
                         if (numExits == 2) {
                         var isHallway = cells[x,y].IsHallway();
