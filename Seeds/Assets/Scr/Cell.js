@@ -26,8 +26,8 @@ public class Cell{
       // return number of exits
       public function GetNumExits () : int {
             var n : int = 0;
-            for (var isExit in exits) {
-                  if (isExit) n++;
+            for (var i = 0; i < exits.length; i++) {
+                  if (exits[i]) n++;
             }
             return n;
       }
@@ -44,6 +44,6 @@ public class Cell{
       }
 
       public function IsHallway () : boolean {
-            
+            return exits[GetFirstExit() + 2];
       }
 }
