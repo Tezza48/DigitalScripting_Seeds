@@ -1,7 +1,9 @@
 #pragma strict
 
 public class MazeGenerator extends MonoBehaviour {
+      public static var seed = 1;
       function GenerateMaze (width : int, height : int) : Cell[,]{
+            Random.seed = this.seed;
             var cells = new Cell[width,height];
             var goNorth : boolean;
             for (var x : int = 0; x < width; x++) {

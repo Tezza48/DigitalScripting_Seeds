@@ -1,9 +1,10 @@
 #pragma strict
 
 public class Game extends MonoBehaviour {
-
-      private var width : int = 10;
-      private var height : int = 10;
+	@Range(5, 15)
+      public var width : int = 10;
+      @Range(5, 15)
+      public var height : int = 10;
       public var tileSize : int;
 
       private var generator : MazeGenerator;
