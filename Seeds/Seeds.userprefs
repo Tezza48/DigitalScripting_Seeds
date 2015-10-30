@@ -1,13 +1,18 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scr\Cell.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scr\MazeGenerator.js">
     <Files>
-      <File FileName="Assets\Scr\Cell.js" Line="41" Column="27" />
+      <File FileName="Assets\Scr\Cell.js" Line="47" Column="38" />
       <File FileName="Assets\Scr\MazeGenerator.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\MazeParser.js" Line="13" Column="29" />
+      <File FileName="Assets\Scr\Game.js" Line="18" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint enabled="false" file="D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\MazeParser.js" line="20" />
+      <Breakpoint file="D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\MazeParser.js" line="15" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
