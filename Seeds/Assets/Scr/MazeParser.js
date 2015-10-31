@@ -14,7 +14,7 @@ public class MazeParser extends MonoBehaviour {
                         var numExits = cells[x,y].GetNumExits();
                         firstExit = cells[x,y].GetFirstExit();
                         position = new Vector3(x * tileSize, 0, -y * tileSize);
-                        rotation = new Vector3(-90, -90 * firstExit, 0);
+                        rotation = new Vector3(0, 90 * firstExit, 0);
                         if (numExits == 2) {
                               var isHallway = cells[x,y].IsHallway();
                               if (isHallway) {

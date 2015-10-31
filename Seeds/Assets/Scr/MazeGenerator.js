@@ -2,8 +2,9 @@
 
 public class MazeGenerator extends MonoBehaviour {
       public static var seed = 1;
+      public var useSeed : boolean = false;
       function GenerateMaze (width : int, height : int) : Cell[,]{
-            Random.seed = this.seed;
+            if (useSeed) Random.seed = this.seed;
             var cells = new Cell[width,height];
             var goNorth : boolean;
             for (var x : int = 0; x < width; x++) {
