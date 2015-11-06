@@ -47,8 +47,10 @@
   <ItemGroup>
      <Compile Include="Assets\Scr\Cell.js" />
      <Compile Include="Assets\Scr\Game.js" />
+     <Compile Include="Assets\Scr\Maze.js" />
      <Compile Include="Assets\Scr\MazeGenerator.js" />
      <Compile Include="Assets\Scr\MazeParser.js" />
+     <Compile Include="Assets\Scr\PickUpNumbers.js" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
      <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
