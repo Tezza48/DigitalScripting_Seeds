@@ -1,9 +1,9 @@
 #pragma strict
 
 public class Game extends MonoBehaviour {
-	@Range(5, 15)
+	//@Range(5, 15)
       public var width : int = 10;
-      @Range(5, 15)
+     // @Range(5, 15)
       public var height : int = 10;
       public var tileSize : int;
 

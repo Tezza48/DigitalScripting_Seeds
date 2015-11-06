@@ -3,6 +3,9 @@
 public class Cell{
       // north, east, south, west
       private var exits : boolean[] = new boolean[4];
+      // does this cell have a number/seed fragment in it?
+      private var hasNumber : boolean = false;
+      private var number : int = 10;
       // construct new cell with either north or west exit
       public function Cell (isNorth : boolean) {
             if (isNorth) {
@@ -22,6 +25,10 @@ public class Cell{
       public function SetSouth (isSouth : boolean) {
             exits[2] = isSouth;
       }
+      public function SetNumber (number : int) {
+            hasNumber = true;
+            this.number = number;
+      }
 
       // return number of exits
       public function GetNumExits () : int {
@@ -30,6 +37,12 @@ public class Cell{
                   if (exits[i]) n++;
             }
             return n;
+      }
+      public function HasNumber () : boolean {
+            return hasNumber;
+      }
+      public function GetNumber () : int {
+            return number;
       }
       // get first exit for orienting the tile
       public function GetFirstExit () : int {
@@ -42,7 +55,7 @@ public class Cell{
             }
             return n;
       }
-
+      // is this cell a halway? only call if the cell has two exits.
       public function IsHallway () : boolean {
       	if (GetFirstExit() >= 2) {
       		return false;

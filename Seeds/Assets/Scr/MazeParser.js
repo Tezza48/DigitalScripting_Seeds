@@ -3,12 +3,15 @@
 public class MazeParser extends MonoBehaviour {
       public var tiles : GameObject[];
 
+      public var numbers : GameObject[] = new GameObject[10];
+
       private var numExits : int;
       private var firstExit : int;
       private var position : Vector3;
       private var rotation : Vector3;
       private var tile : GameObject;
       public function Parse (cells : Cell[,], width : int, height : int, tileSize : int) {
+            var maze = Instantiate(new GameObject("Maze"), transform.position, Quaternion.identity);
             for (var x = 0; x < width; x++) {
                   for (var y = 0; y < height; y++) {
                         var numExits = cells[x,y].GetNumExits();
@@ -25,9 +28,13 @@ public class MazeParser extends MonoBehaviour {
                                     tile.name += "(" + x + ", " + y + ")";
                               }
                         } else {
-                        tile = Instantiate(tiles[numExits - 1], position, Quaternion.Euler(rotation));
-                        tile.name += "(" + x + ", " + y + ")";
+                              tile = Instantiate(tiles[numExits - 1], position, Quaternion.Euler(rotation));
+                              tile.name += "(" + x + ", " + y + ")";
                         }
+                        if (cells[x,y].HasNumber) {
+                              Instantiate(numbers[cells[x,y].GetNumber()], position, Quaternion.identity);
+                        }
+                        tile.transform.parent = maze.transform;
                   }
             }
       }
