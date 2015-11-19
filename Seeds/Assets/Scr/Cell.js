@@ -6,10 +6,11 @@ public class Cell{
       // does this cell have a number/seed fragment in it?
       // private var hasNumber : boolean = false;
       // private var number : int = 10;
+
       // is this cell the player start?
-      private var isStart : boolean = false;
+      // private var isStart : boolean = false;
       // is this cell the exit?
-      private var isFinish : boolean = false;
+      // private var isFinish : boolean = false;
       // construct new cell with either north or west exit
       public function Cell (isNorth : boolean) {
             if (isNorth) {

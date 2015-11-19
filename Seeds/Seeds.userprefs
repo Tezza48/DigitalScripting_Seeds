@@ -1,9 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scr\MazeParser.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scr\Game.js">
     <Files>
-      <File FileName="Assets\Scr\MazeParser.js" Line="19" Column="1" />
-      <File FileName="Assets\Scr\Game.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\TerminalSubmit.js" Line="3" Column="23" />
+      <File FileName="Assets\Scr\Game.js" Line="25" Column="6" />
+      <File FileName="Assets\Scr\MazeParser.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\Cell.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
