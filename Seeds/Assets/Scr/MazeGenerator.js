@@ -5,6 +5,8 @@ public class MazeGenerator extends MonoBehaviour {
       public var useSeed : boolean = false;
       // private var numberCoordinates : int [] = new int[30];
 
+	  // code designed to place numbers in the level
+	  
       // generate the coordinates to spawn the seed fragments
       // private function GenerateNumberCoords (width : int, height : int) {
       //       var isDiscreet : boolean;

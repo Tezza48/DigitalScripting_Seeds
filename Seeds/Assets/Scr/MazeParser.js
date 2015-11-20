@@ -19,14 +19,19 @@ public class MazeParser extends MonoBehaviour {
             maze.GetComponent(Maze).maze = new GameObject[width, height];
             for (var x = 0; x < width; x++) {
                   for (var y = 0; y < height; y++) {
+                  
                         // get the number of exits the cell has
                         var numExits = cells[x,y].GetNumExits();
+                        
                         // find the orientation of the cell
                         firstExit = cells[x,y].GetFirstExit();
+                        
                         // where to instantiate the tile
                         position = new Vector3(x * tileSize, 0, -y * tileSize);
+                        
                         // what rotation to instantiate it at
                         rotation = new Vector3(0, 90 * firstExit, 0);
+                        
                         // if 2 exits use check if it's a hallway or a corner
                         if (numExits == 2) {
                               var isHallway = cells[x,y].IsHallway();
@@ -42,10 +47,15 @@ public class MazeParser extends MonoBehaviour {
                               tile = Instantiate(tiles[numExits - 1], position, Quaternion.Euler(rotation));
                               tile.name += "(" + x + ", " + y + ")";
                         }
+                        
+                        // to be used when placing numbers
+                        
                         // if (cells[x,y].HasNumber) {
                         //       // if the cell is meant to spawn a number/seed fragment, spawn it
                         //       Instantiate(numbers[cells[x,y].GetNumber()], position, Quaternion.identity);
                         // }
+                        
+                        // make the current time a chilg of the maze gameobject to keef the hierachy clean
                         maze.GetComponent(Maze).maze[x,y] = tile;
                         tile.transform.parent = maze.transform;
                   }
