@@ -41,6 +41,20 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        [SerializeField] private bool disableLook; // my adition to stop you being able to look when paused
+
+        public bool DisableLook
+        {
+            get
+            {
+                return disableLook;
+            }
+
+            set
+            {
+                disableLook = value;
+            }
+        }
 
         // Use this for initialization
         private void Start()
@@ -234,7 +248,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void RotateView()
         {
-            m_MouseLook.LookRotation (transform, m_Camera.transform);
+            if (!DisableLook)
+                m_MouseLook.LookRotation (transform, m_Camera.transform);
         }
 
 

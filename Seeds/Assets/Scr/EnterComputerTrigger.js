@@ -11,5 +11,6 @@ function OnTriggerEnter (other : Collider) {
   if (other.tag == "Terminal"){
     computerMenu.gameObject.SetActive(true);
     Time.timeScale = 0;
+    GetComponent.<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().DisableLook = true;
   }
 }

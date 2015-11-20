@@ -7,6 +7,7 @@ public class Game extends MonoBehaviour {
 	public var height : int = 10;
 	public var tileSize : int;
 	public var seed : int;
+    // private var player : GameObject;
 	private var generator : MazeGenerator;
 	private var parser : MazeParser;
 	private var cells : Cell[,];
@@ -14,7 +15,7 @@ public class Game extends MonoBehaviour {
 	public static var instance:Game;
 
 	function Start () {
-		if ( instance != null ){
+		if ( instance == null ){
 			instance = this;
 			DontDestroyOnLoad(gameObject);
 		} else {
@@ -26,7 +27,8 @@ public class Game extends MonoBehaviour {
 	}
 
 	function StartLevel () {
-
+		Time.timeScale = 1;
+	    // player = GameObject.FindGameObjectWithTag("Player");
 		generator = GetComponent(MazeGenerator);
 		parser = GetComponent(MazeParser);
 
