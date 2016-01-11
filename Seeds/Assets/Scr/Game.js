@@ -10,7 +10,7 @@ public class Game extends MonoBehaviour {
     // private var player : GameObject;
 	private var generator : MazeGenerator;
 	private var parser : MazeParser;
-	private var cells : Cell[,];
+	private var grid : boolean[,];
 
 	public static var instance:Game;
 
@@ -30,14 +30,16 @@ public class Game extends MonoBehaviour {
 	function StartLevel () {
 		// reset the time scale to make sure that it's not left at 0 from the preveous level
 		Time.timeScale = 1;
-	    // player = GameObject.FindGameObjectWithTag("Player");
+		
 		generator = GetComponent(MazeGenerator);
 		parser = GetComponent(MazeParser);
 		
-		// generate the maze cells
-		cells = generator.GenerateMaze(width, height, seed);
-		// create the maze from tile gameobjects using the data stored in the cells
-		parser.Parse(cells, width, height, 4);
+		// generate the maze walls
+		grid = generator.GenerateMaze(width, height, seed);
+		// parse the maze into cells
+		
+		// parse the cells into gameObjects
+		//parser.Parse(cells, width, height, 4);
 	}
 	// start the level again with the new seed;
 	function TerminalSubmit(seed : int) {

@@ -1,0 +1,54 @@
+width
+height
+seed
+
+random.seed = seed
+
+mazeGrid = new cell[width, height]
+
+// make constants for describing directions
+
+south = 1
+east = 2
+HORIZONTAL = 1
+VERTICAL = 2
+
+ChooseDirection (width, height)
+      if width < height
+            return HORIZONTAL
+      else if height < width
+            return VERTICAL
+      else
+            // Randomly Pick
+
+Divide (MazeGrid, x, y, width, height, orientation)
+
+      // this method is recursive
+      // return if width < 2 or height < 2
+
+      bool isHorizontal = (orientation == HORIZONTAL)
+
+      // find a position to draw the wall
+
+      if isHorizontal
+            wallX = x
+            wallY = y + rand(height - 2)
+      if !isHorizontal
+            wallX = x + rand(width - 2)
+            wallY = y
+
+      // find a position to draw the passage
+
+      if isHorizontal
+            passageX = wallX + rand(width)
+            passageY = wallY
+      if !isHorizontal
+            passageX = wallX
+            passageY = wallY + rand(height)
+
+      // find the lenght to make the wall
+
+      if isHorizontal
+            length = width
+      else
+            length = height
