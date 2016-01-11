@@ -10,7 +10,7 @@ public class Game extends MonoBehaviour {
     // private var player : GameObject;
 	private var generator : MazeGenerator;
 	private var parser : MazeParser;
-	private var grid : boolean[,];
+	private var grid : Cell[,];
 
 	public static var instance:Game;
 
@@ -36,10 +36,9 @@ public class Game extends MonoBehaviour {
 		
 		// generate the maze walls
 		grid = generator.GenerateMaze(width, height, seed);
-		// parse the maze into cells
 		
 		// parse the cells into gameObjects
-		//parser.Parse(cells, width, height, 4);
+		parser.Parse(grid, width, height, 4);
 	}
 	// start the level again with the new seed;
 	function TerminalSubmit(seed : int) {

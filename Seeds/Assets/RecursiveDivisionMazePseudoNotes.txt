@@ -4,12 +4,10 @@ seed
 
 random.seed = seed
 
-mazeGrid = new cell[width, height]
+mazeGrid = new bool[width, height]
 
 // make constants for describing directions
 
-south = 1
-east = 2
 HORIZONTAL = 1
 VERTICAL = 2
 
@@ -28,27 +26,34 @@ Divide (MazeGrid, x, y, width, height, orientation)
 
       bool isHorizontal = (orientation == HORIZONTAL)
 
-      // find a position to draw the wall
 
       if isHorizontal
+            // find a position to draw the wall
             wallX = x
             wallY = y + rand(height - 2)
-      if !isHorizontal
+
+            // find a position to draw the passage
+            passageX = wallX + rand(width)
+            passageY = wallY
+
+            // find the length to make the wall
+            length = width
+
+      else
             wallX = x + rand(width - 2)
             wallY = y
 
-      // find a position to draw the passage
-
-      if isHorizontal
-            passageX = wallX + rand(width)
-            passageY = wallY
-      if !isHorizontal
             passageX = wallX
             passageY = wallY + rand(height)
 
-      // find the lenght to make the wall
-
-      if isHorizontal
-            length = width
-      else
             length = height
+
+            direction = east
+
+      for i < length
+            if isHorizontal
+                  grid [wallX + i, wallY] = true
+            else
+                  grid [wallX, wallY + i] = true
+
+      grid[passageX, passageY] = false
