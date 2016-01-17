@@ -1,0 +1,18 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scr\Maze\MazeGenerator.js">
+    <Files>
+      <File FileName="Assets\UIDisplayVelocity.js" Line="13" Column="19" />
+      <File FileName="Assets\Scr\TerminalSubmit.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\Player\PlayerLook.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\Player\PlayerInventory.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\Maze\Cell.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\Maze\Maze.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\Maze\MazeGenerator.js" Line="58" Column="54" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

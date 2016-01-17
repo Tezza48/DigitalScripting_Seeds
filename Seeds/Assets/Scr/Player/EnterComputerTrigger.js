@@ -12,9 +12,12 @@ function OnTriggerEnter (other : Collider) {
 	if (other.tag == "Terminal"){
 		// activate the terminal ui
 		computerMenu.gameObject.SetActive(true);
-		// pause the gameplay
-		Time.timeScale = 0;
-		// disable the mouse-look
-		GetComponent.<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().DisableLook = true;
+	}
+}
+
+function OnTriggerExit (other : Collider) {
+	if (other.tag == "Terminal"){
+		// deactivate the terminal ui
+		computerMenu.gameObject.SetActive(false);
 	}
 }

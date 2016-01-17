@@ -3,9 +3,12 @@
             Instatiate Maze tiles on the grid and add seed fragments
  *    *     *     *     *     *     *     *     *     *     *     *     *     *     */
 public class MazeParser extends MonoBehaviour {
-      public var tiles : GameObject[];
 
+      public var tiles : GameObject[];
       public var numbers : GameObject[] = new GameObject[10];
+      public var playerController : GameObject;
+      public var terminalPrefab : GameObject;
+      public var cube : GameObject;
 
       private var numExits : int;
       private var firstExit : int;
@@ -48,12 +51,23 @@ public class MazeParser extends MonoBehaviour {
                               tile.name += "(" + x + ", " + y + ")";
                         }
                         
+                        if (cells[x, y].GetIsStart()) {
+                        	var player = Instantiate (playerController, position + Vector3.up, Quaternion.identity);
+                        	player.name = playerController.name;
+                        }
+                        
+                        if (cells[x, y].GetIsTerminal()) {
+                        	var terminal = Instantiate (terminalPrefab, position + Vector3.up, Quaternion.identity);
+                        	terminal.name = terminalPrefab.name;
+                        }
+                        
                         // to be used when placing numbers
                         
-                        // if (cells[x,y].HasNumber) {
-                        //       // if the cell is meant to spawn a number/seed fragment, spawn it
-                        //       Instantiate(numbers[cells[x,y].GetNumber()], position, Quaternion.identity);
-                        // }
+                        if (cells[x,y].GetNumber() > 0) {
+                              // if the cell is meant to spawn a number/seed fragment, spawn it
+                              var number = Instantiate (cube, position + Vector3.up, Quaternion.identity);
+                              number.name = cells[x,y].GetNumber().ToString();
+                        }
                         
                         // make the current time a chilg of the maze gameobject to keef the hierachy clean
                         maze.GetComponent(Maze).maze[x,y] = tile;
