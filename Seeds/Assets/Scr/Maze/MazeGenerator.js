@@ -6,9 +6,10 @@ public class MazeGenerator extends MonoBehaviour {
 
 	public var playerSpawn : Vector2;
 	public var terminalSpawn : Vector2;
-	private var maxNumberSpawn : int = 20;
+	// private var maxNumberSpawn : int = 20;
 
 	function GenerateMaze (width : int, height : int, seed : int) : Cell[,]{
+		print("Width: " + width + "Height " + height);
 		// generate coordinates that will spawn seed fragments
 		// GenerateNumberCoords(width, height);
 
@@ -16,7 +17,7 @@ public class MazeGenerator extends MonoBehaviour {
 		do {
 			terminalSpawn = new Vector2(Random.Range(0, width), Random.Range(0, height));
 		} while (terminalSpawn == playerSpawn);
-		
+
 		// do i want to spawn this maze using a seed
 		if (useSeed) Random.seed = seed;
 		// create an array of cell objects
@@ -45,21 +46,21 @@ public class MazeGenerator extends MonoBehaviour {
 				}
 			}
 		}
-		
+
 		cells[playerSpawn.x, playerSpawn.y].SetIsStart(true);
 		cells[terminalSpawn.x, terminalSpawn.y].SetIsTerminal(true);
-		
-		AddNumbers(cells, width, height);
-		
+
+		AddNumbers(cells, width, height, width);
+
 		return cells;
 	}
 
-	function AddNumbers (cells : Cell[,], width : int, height : int) {
-		var numbersToSpawn = Random.Range(1, maxNumberSpawn);
-		
+	function AddNumbers (cells : Cell[,], width : int, height : int, maxNumbers : int) {
+		var numbersToSpawn = Random.Range(1, maxNumbers);
+
 		for (var i = 0; i < numbersToSpawn; i++){
 			var isValid = false;
-			
+
 			while (!isValid){
 				var x : int = Random.Range(0, width);
 				var y : int = Random.Range(0, height);

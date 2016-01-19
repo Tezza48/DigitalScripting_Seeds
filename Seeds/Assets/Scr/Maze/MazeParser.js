@@ -22,19 +22,19 @@ public class MazeParser extends MonoBehaviour {
             maze.GetComponent(Maze).maze = new GameObject[width, height];
             for (var x = 0; x < width; x++) {
                   for (var y = 0; y < height; y++) {
-                  
+
                         // get the number of exits the cell has
                         var numExits = cells[x,y].GetNumExits();
-                        
+
                         // find the orientation of the cell
                         firstExit = cells[x,y].GetFirstExit();
-                        
+
                         // where to instantiate the tile
                         position = new Vector3(x * tileSize, 0, -y * tileSize);
-                        
+
                         // what rotation to instantiate it at
                         rotation = new Vector3(0, 90 * firstExit, 0);
-                        
+
                         // if 2 exits use check if it's a hallway or a corner
                         if (numExits == 2) {
                               var isHallway = cells[x,y].IsHallway();
@@ -50,25 +50,26 @@ public class MazeParser extends MonoBehaviour {
                               tile = Instantiate(tiles[numExits - 1], position, Quaternion.Euler(rotation));
                               tile.name += "(" + x + ", " + y + ")";
                         }
-                        
+
                         if (cells[x, y].GetIsStart()) {
                         	var player = Instantiate (playerController, position + Vector3.up, Quaternion.identity);
                         	player.name = playerController.name;
                         }
-                        
+
                         if (cells[x, y].GetIsTerminal()) {
                         	var terminal = Instantiate (terminalPrefab, position + Vector3.up, Quaternion.identity);
                         	terminal.name = terminalPrefab.name;
                         }
-                        
+
                         // to be used when placing numbers
-                        
-                        if (cells[x,y].GetNumber() > 0) {
+                        var cellNumber : int = cells[x,y].GetNumber();
+                        if (cellNumber > 0) {
                               // if the cell is meant to spawn a number/seed fragment, spawn it
-                              var number = Instantiate (cube, position + Vector3.up, Quaternion.identity);
-                              number.name = cells[x,y].GetNumber().ToString();
+                              var numberObject = Instantiate (cube, position + Vector3.up, Quaternion.identity);
+                              numberObject.name = "Number " + cellNumber.ToString();
+                              numberObject.GetComponent.<NumberItem>().number = cellNumber;
                         }
-                        
+
                         // make the current time a chilg of the maze gameobject to keef the hierachy clean
                         maze.GetComponent(Maze).maze[x,y] = tile;
                         tile.transform.parent = maze.transform;

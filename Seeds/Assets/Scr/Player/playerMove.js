@@ -8,10 +8,10 @@ public var jumpCheckR : Transform;
 public var isGrounded : boolean;
 
 private var rigid : Rigidbody;
-private var walkAccel : float = 10f;
-private var airAccel : float = 10f;
+private var walkAccel : float = 50f;
+private var airAccel : float = 50f;
 private var maxSpeed : float = 5f;
-private var jumpForce : float = 1f;
+private var jumpForce : float = 5f;
 
 function Start () {
 	rigid = GetComponent.<Rigidbody>();
@@ -25,6 +25,8 @@ function Start () {
 
 function FixedUpdate () {
 
+	isGrounded = GroundedCheck();
+
 	var xInput = Input.GetAxisRaw("Horizontal");
 	var yInput = Input.GetAxisRaw("Vertical");
 	var direction = (xInput * transform.right + yInput * transform.forward).normalized;
@@ -36,8 +38,6 @@ function FixedUpdate () {
 	else {
 		rigid.velocity = MoveAir(direction, currentV);
 	}
-
-	isGrounded = GroundedCheck();
 }
 
 function MoveGround (direction : Vector3, currentV : Vector3) : Vector3{
@@ -45,11 +45,11 @@ function MoveGround (direction : Vector3, currentV : Vector3) : Vector3{
 }
 
 function MoveAir (direction : Vector3, currentV : Vector3) : Vector3{
-	return Accelerate(direction, currentV, airAccel, 50f);
+	return Accelerate(direction, currentV, airAccel, 20f);
 }
 
 function Accelerate(direction : Vector3, currentV : Vector3, accel : float, maxSpeed : float) : Vector3{
-	var newSpeed = Vector3.Dot(currentV, direction);
+	var newSpeed = Vector3.Dot(currentV, direction.normalized);
 	var accelSpeed = accel * Time.deltaTime;
 	if (newSpeed + accelSpeed > maxSpeed){
 		accelSpeed = maxSpeed - newSpeed;
@@ -58,19 +58,21 @@ function Accelerate(direction : Vector3, currentV : Vector3, accel : float, maxS
 }
 
 function Jump (){
-	if(Input.GetButton("Jump")){
+	if(Input.GetButtonDown("Jump")){
 		rigid.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 	}
 }
 
 function GroundedCheck () : boolean{
 	var down : Vector3 = -transform.up;
-	
-	var centreCheck : boolean = Physics.Raycast(jumpCheckCentre.position, down, 0.1f);
-	var fwdCheck : boolean = Physics.Raycast(jumpCheckF.position, down, 0.1f);
-	var backCheck : boolean = Physics.Raycast(jumpCheckB.position, down, 0.1f);
-	var leftCheck : boolean = Physics.Raycast(jumpCheckL.position, down, 0.1f);
-	var rightCheck : boolean = Physics.Raycast(jumpCheckR.position, down, 0.1f);
-	
+
+	var castLength : float = 0.01f;
+
+	var centreCheck : boolean = Physics.Raycast(jumpCheckCentre.position, down, castLength);
+	var fwdCheck : boolean = Physics.Raycast(jumpCheckF.position, down, castLength);
+	var backCheck : boolean = Physics.Raycast(jumpCheckB.position, down, castLength);
+	var leftCheck : boolean = Physics.Raycast(jumpCheckL.position, down, castLength);
+	var rightCheck : boolean = Physics.Raycast(jumpCheckR.position, down, castLength);
+
 	return (fwdCheck || backCheck || leftCheck || rightCheck || centreCheck)? true : false;
 }
