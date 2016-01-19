@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scr\Player\PlayerMove.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scr\Player\playerMove.js">
     <Files>
-      <File FileName="Assets\Scr\Player\PlayerMove.js" Line="5" Column="34" />
+      <File FileName="Assets\Scr\Player\playerMove.js" Line="14" Column="34" />
+      <File FileName="Assets\Scr\Player\PlayerMove.js" Line="77" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
