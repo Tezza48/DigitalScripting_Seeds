@@ -34,6 +34,7 @@ ModelImporter:
     2300012: six
     2300014: three
     2300016: two
+    2300018: //RootNode
     3300000: eight
     3300002: five
     3300004: four
@@ -43,6 +44,7 @@ ModelImporter:
     3300012: six
     3300014: three
     3300016: two
+    3300018: //RootNode
     4300000: one
     4300002: two
     4300004: three
