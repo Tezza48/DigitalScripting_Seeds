@@ -1,7 +1,11 @@
 ﻿#pragma strict
 
 import UnityEngine.UI;
+
+private var _Game : Game;
+
 function Start () {
+	_Game = GameObject.Find("Game").GetComponent.<Game>();
 }
 
 function Submit () {
@@ -9,5 +13,7 @@ function Submit () {
 	//GameObject.FindGameObjectWithTag("Player").GetComponent.<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().DisableLook = false;
 	
 	// submit the seed to Game
-	Game.instance.TerminalSubmit(parseInt(GetComponent.<InputField>().text));
+	var givenSeed = parseInt(GetComponent.<InputField>().text);
+	if(givenSeed != 0)
+		_Game.TerminalSubmit(givenSeed);
 }

@@ -10,6 +10,9 @@ function Start () {
 
 function OnTriggerEnter (other : Collider) {
 	if (other.tag == "Terminal"){
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+		GetComponent.<PlayerLook>().cameraLocked = true;
 		// activate the terminal ui
 		computerMenu.gameObject.SetActive(true);
 	}
@@ -17,6 +20,9 @@ function OnTriggerEnter (other : Collider) {
 
 function OnTriggerExit (other : Collider) {
 	if (other.tag == "Terminal"){
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+		GetComponent.<PlayerLook>().cameraLocked = false;
 		// deactivate the terminal ui
 		computerMenu.gameObject.SetActive(false);
 	}

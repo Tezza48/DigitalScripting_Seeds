@@ -1,12 +1,15 @@
 ﻿#pragma strict
 
+private var _Game : Game;
+
 function Start (){
+	_Game = GameObject.Find("Game").GetComponent.<Game>();
 }
 
 function OnTriggerEnter (other : Collider){
       if (other.tag == "Number"){
             var othersNumber : NumberItem = other.GetComponent.<NumberItem>();
-            Game.instance.CollectNumber(othersNumber.number);
+            _Game.CollectNumber(othersNumber.number);
             other.gameObject.SetActive(false);
       }
 }

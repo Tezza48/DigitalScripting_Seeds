@@ -1,12 +1,8 @@
 #pragma strict
 
 public class MazeGenerator extends MonoBehaviour {
-	// public static var seed = 1;
-	private var useSeed : boolean = true;
-
 	public var playerSpawn : Vector2;
 	public var terminalSpawn : Vector2;
-	// private var maxNumberSpawn : int = 20;
 
 	function GenerateMaze (width : int, height : int, seed : int) : Cell[,]{
 		print("Width: " + width + "Height " + height);
@@ -19,7 +15,7 @@ public class MazeGenerator extends MonoBehaviour {
 		} while (terminalSpawn == playerSpawn);
 
 		// do i want to spawn this maze using a seed
-		if (useSeed) Random.seed = seed;
+		Random.seed = seed;
 		// create an array of cell objects
 		var cells = new Cell[width,height];
 		var goNorth : boolean;
@@ -56,7 +52,7 @@ public class MazeGenerator extends MonoBehaviour {
 	}
 
 	function AddNumbers (cells : Cell[,], width : int, height : int, maxNumbers : int) {
-		var numbersToSpawn = Random.Range(1, maxNumbers);
+		var numbersToSpawn = Random.Range(width, width * 2);
 
 		for (var i = 0; i < numbersToSpawn; i++){
 			var isValid = false;
@@ -64,11 +60,16 @@ public class MazeGenerator extends MonoBehaviour {
 			while (!isValid){
 				var x : int = Random.Range(0, width);
 				var y : int = Random.Range(0, height);
-				if (cells[x, y].GetNumber() == 0){
-					cells[x, y].SetNumber(Random.Range(1, 9));
-					isValid = true;
-				} else {
+				if ((x == playerSpawn.x && y == playerSpawn.y) || (x == terminalSpawn.x && y == terminalSpawn.y) ){
 					isValid = false;
+				}
+				else{
+					if (cells[x, y].GetNumber() == 0){
+						cells[x, y].SetNumber(Random.Range(1, 9));
+						isValid = true;
+					} else {
+						isValid = false;
+					}
 				}
 			}
 		}

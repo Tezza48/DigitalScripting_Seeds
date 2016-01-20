@@ -1,12 +1,13 @@
 #pragma strict
 
+import System.DateTime;
+
 public class Game extends MonoBehaviour {
 	//@Range(5, 15)
 	private var width : int = 4;
 	// @Range(5, 15)
 	private var height : int = 4;
-	public var tileSize : int;
-	public var seed : int;
+	private var tileSize : int = 8;
 	public var collectedNumbers : int;
 	public var levelCounter : int = 0;
 
@@ -18,45 +19,45 @@ public class Game extends MonoBehaviour {
 	public static var instance:Game;
 
 	function Start () {
-
 		// make this object a singleton
-		if ( instance == null ){
-			instance = this;
-			DontDestroyOnLoad(gameObject);
-		} else {
-			Destroy(gameObject);
-		}
-		// set the seed for the first level to be random
-		seed = Random.Range(0, 1000);
-
+		
 		generator = GetComponent(MazeGenerator);
 		parser = GetComponent(MazeParser);
-
-    	StartLevel();
+		
+		
+    	GenerateLevel(UtcNow.TimeOfDay.TotalMilliseconds);
 	}
 
-	function StartLevel () {
-		var currentWidth = width + levelCounter;
-		var currentHeight = height + levelCounter;
-
-		collectedNumbers = 0;
-	    // player = GameObject.FindGameObjectWithTag("Player");
+	function GenerateLevel (newSeed : int) {
+		print ("Game Seed: " + newSeed);
+	
 	    Time.timeScale = 1;
+		collectedNumbers = 0;
+	    
+	    // width and height of the level should be incrimented with the level counter
+	    // makes the game harder as the player progresses
+		var currentWidth = width + levelCounter;
+		if (levelCounter % 2 == 0)
+			var currentHeight = height + levelCounter;
+		else
+			currentHeight = height + levelCounter - 1;
+		
 		// generate the maze cells
-		cells = generator.GenerateMaze(currentWidth, currentHeight, seed);
+		cells = generator.GenerateMaze(currentWidth, currentHeight, newSeed);
 		// create the maze from tile gameobjects using the data stored in the cells
 		parser.Parse(cells, currentWidth, currentHeight, tileSize);
+		
 	}
-	// start the level again with the new seed;
+	
+	// start the level again with the new seed
 	function TerminalSubmit(seed : int) {
 		// set the seed to the value submitted
 		if (seed == collectedNumbers){
+		// incriment the level counter
 			levelCounter++;
-			this.seed = seed;
-			// reload the level
-			Application.LoadLevel(Application.loadedLevel);
-			// run the StartLevel again
-			StartLevel();
+			Destroy(parser.maze);
+			// generate a new maze
+			GenerateLevel(seed);
 		}
 	}
 

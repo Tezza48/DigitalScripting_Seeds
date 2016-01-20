@@ -1,11 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scr\Game\Game.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scr\Maze\MazeParser.js">
     <Files>
+      <File FileName="Assets\Scr\Game\Game.js" Line="28" Column="54" />
       <File FileName="Assets\Scr\Maze\MazeGenerator.js" Line="1" Column="1" />
-      <File FileName="Assets\Scr\Maze\MazeParser.js" Line="58" Column="1" />
-      <File FileName="Assets\Scr\Game\Game.js" Line="11" Column="35" />
-      <File FileName="Assets\Scr\Player\playerMove.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\Maze\MazeParser.js" Line="70" Column="69" />
+      <File FileName="Assets\Scr\TerminalSubmit.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\Player\NumberCollector.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\Player\EnterComputerTrigger.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\Player\PlayerLook.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

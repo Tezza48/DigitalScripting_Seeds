@@ -8,7 +8,7 @@ public class MazeParser extends MonoBehaviour {
       public var numbers : GameObject[] = new GameObject[10];
       public var playerController : GameObject;
       public var terminalPrefab : GameObject;
-      public var cube : GameObject;
+      public var maze : GameObject;
 
       private var numExits : int;
       private var firstExit : int;
@@ -17,9 +17,7 @@ public class MazeParser extends MonoBehaviour {
       private var tile : GameObject;
       public function Parse (cells : Cell[,], width : int, height : int, tileSize : int) {
             // Create a parent object to contain all of the maze tiles
-            var maze = Instantiate(new GameObject("Maze"), transform.position, Quaternion.identity);
-            maze.AddComponent(Maze);
-            maze.GetComponent(Maze).maze = new GameObject[width, height];
+            maze = new GameObject("Maze");
             for (var x = 0; x < width; x++) {
                   for (var y = 0; y < height; y++) {
 
@@ -54,24 +52,25 @@ public class MazeParser extends MonoBehaviour {
                         if (cells[x, y].GetIsStart()) {
                         	var player = Instantiate (playerController, position + Vector3.up, Quaternion.identity);
                         	player.name = playerController.name;
+                        	player.transform.parent = maze.transform;
                         }
 
                         if (cells[x, y].GetIsTerminal()) {
-                        	var terminal = Instantiate (terminalPrefab, position + Vector3.up, Quaternion.identity);
+                        	var terminal : GameObject = Instantiate (terminalPrefab, position + Vector3.up, Quaternion.identity);
                         	terminal.name = terminalPrefab.name;
+                        	terminal.transform.parent = maze.transform;
                         }
 
                         // to be used when placing numbers
                         var cellNumber : int = cells[x,y].GetNumber();
                         if (cellNumber > 0) {
                               // if the cell is meant to spawn a number/seed fragment, spawn it
-                              var numberObject = Instantiate (cube, position + Vector3.up, Quaternion.identity);
+                              var numberObject = Instantiate (numbers[cellNumber], position + Vector3.up, Quaternion.identity);
                               numberObject.name = "Number " + cellNumber.ToString();
+                              numberObject.AddComponent(NumberItem);
                               numberObject.GetComponent.<NumberItem>().number = cellNumber;
+                              numberObject.transform.parent = maze.transform;
                         }
-
-                        // make the current time a chilg of the maze gameobject to keef the hierachy clean
-                        maze.GetComponent(Maze).maze[x,y] = tile;
                         tile.transform.parent = maze.transform;
                   }
             }
