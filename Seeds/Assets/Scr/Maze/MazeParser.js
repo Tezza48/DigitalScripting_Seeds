@@ -67,7 +67,6 @@ public class MazeParser extends MonoBehaviour {
                               // if the cell is meant to spawn a number/seed fragment, spawn it
                               var numberObject = Instantiate (numbers[cellNumber], position + Vector3.up, Quaternion.identity);
                               numberObject.name = "Number " + cellNumber.ToString();
-                              numberObject.AddComponent(NumberItem);
                               numberObject.GetComponent.<NumberItem>().number = cellNumber;
                               numberObject.transform.parent = maze.transform;
                         }

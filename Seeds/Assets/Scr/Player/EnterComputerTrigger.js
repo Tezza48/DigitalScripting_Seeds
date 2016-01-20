@@ -20,3 +20,15 @@ function OnTriggerExit (other : Collider) {
 		computerPrompt.gameObject.SetActive(false);
 	}
 }
+
+function OnTriggerStay (other : Collider) {
+	if (other.tag == "Terminal"){
+		if (Input.GetButtonDown("Use")){
+			var terminalCamera = other.transform.parent.Find("Camera");
+			terminalCamera.gameObject.SetActive(true);
+			gameObject.SetActive(false);
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+		}
+	}
+}
