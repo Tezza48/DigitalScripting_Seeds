@@ -1,0 +1,108 @@
+Initialize engine version: 5.2.3f1 (f3d16a1fa2dd)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 950M       (ID=0x139a)
+    Vendor:   NVIDIA
+    VRAM:     1991 MB
+FMOD failed to initialize the output device, attempting to initialize the null output.
+ 
+(Filename:  Line: 1175)
+
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\Users\Student\Documents\University\Year 2\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.0\Seeds 1.0_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Users\Student\Documents\University\Year 2\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.0\Seeds 1.0_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Users\Student\Documents\University\Year 2\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.0\Seeds 1.0_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading D:\Users\Student\Documents\University\Year 2\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.0\Seeds 1.0_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: D:\Users\Student\Documents\University\Year 2\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.0\Seeds 1.0_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading D:\Users\Student\Documents\University\Year 2\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.0\Seeds 1.0_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: D:\Users\Student\Documents\University\Year 2\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.0\Seeds 1.0_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Users\Student\Documents\University\Year 2\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.0\Seeds 1.0_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Users\Student\Documents\University\Year 2\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.0\Seeds 1.0_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Users\Student\Documents\University\Year 2\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.0\Seeds 1.0_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\Users\Student\Documents\University\Year 2\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.0\Seeds 1.0_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.563 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: D:\Users\Student\Documents\University\Year 2\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.0\Seeds 1.0_Data\Managed\System.dll (this message is harmless)
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: fa0 -> priority: 1 
+  Thread -> id: 2154 -> priority: 1 
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 49.010284 ms
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 641.
+Total: 1.254538 ms (FindLiveObjects: 0.134612 ms CreateObjectMapping: 0.110926 ms MarkObjects: 0.854254 ms  DeleteObjects: 0.151586 ms)
+
+Platform assembly: D:\Users\Student\Documents\University\Year 2\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.0\Seeds 1.0_Data\Managed\Boo.Lang.dll (this message is harmless)
+Game Seed: 64263864
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Width: 4Height 4
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Platform assembly: D:\Users\Student\Documents\University\Year 2\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.0\Seeds 1.0_Data\Managed\UnityScript.Lang.dll (this message is harmless)
+Game Seed: 7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Width: 5Height 4
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Game Seed: 8
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Width: 6Height 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Game Seed: 78
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Width: 7Height 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Game Seed: 8
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Width: 8Height 8
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Game Seed: 234
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Width: 9Height 8
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Game Seed: 2424
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Width: 10Height 10
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Game Seed: 37
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+Width: 11Height 10
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
+No Time Left!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
+
