@@ -1,16 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scr\NumberItem.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scr\UIDisplayTime.js">
     <Files>
+      <File FileName="Assets\Scr\Player\EnterComputerTrigger.js" Line="39" Column="1" />
       <File FileName="Assets\Scr\TerminalSubmit.js" Line="1" Column="1" />
-      <File FileName="Assets\Scr\Maze\MazeParser.js" Line="69" Column="85" />
+      <File FileName="Assets\Scr\Maze\MazeParser.js" Line="1" Column="1" />
       <File FileName="Assets\Scr\Game\Game.js" Line="1" Column="1" />
       <File FileName="Assets\Scr\Maze\MazeGenerator.js" Line="1" Column="1" />
-      <File FileName="Assets\Scr\Player\NumberCollector.js" Line="13" Column="36" />
-      <File FileName="Assets\Scr\Player\EnterComputerTrigger.js" Line="30" Column="42" />
+      <File FileName="Assets\Scr\Player\NumberCollector.js" Line="1" Column="1" />
       <File FileName="Assets\Scr\Player\PlayerLook.js" Line="1" Column="1" />
       <File FileName="Assets\Scr\Player\playerMove.js" Line="1" Column="1" />
-      <File FileName="Assets\Scr\NumberItem.js" Line="7" Column="23" />
+      <File FileName="Assets\Scr\NumberItem.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\LevelTimer.js" Line="3" Column="25" />
+      <File FileName="Assets\Scr\UIDisplayTime.js" Line="22" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

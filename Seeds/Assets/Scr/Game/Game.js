@@ -15,7 +15,7 @@ public class Game extends MonoBehaviour {
 	private var generator : MazeGenerator;
 	private var parser : MazeParser;
 	private var cells : Cell[,];
-
+	private var _LevelTimer : LevelTimer;
 	public static var instance:Game;
 
 	function Start () {
@@ -23,7 +23,7 @@ public class Game extends MonoBehaviour {
 		
 		generator = GetComponent(MazeGenerator);
 		parser = GetComponent(MazeParser);
-		
+		_LevelTimer = GetComponent.<LevelTimer>();
 		
     	GenerateLevel(UtcNow.TimeOfDay.TotalMilliseconds);
 	}
@@ -58,6 +58,9 @@ public class Game extends MonoBehaviour {
 			Destroy(parser.maze);
 			// generate a new maze
 			GenerateLevel(seed);
+		}
+		else {
+			_LevelTimer.TimePenalty();
 		}
 	}
 
