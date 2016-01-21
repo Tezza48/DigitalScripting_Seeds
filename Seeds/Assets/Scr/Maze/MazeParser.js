@@ -9,7 +9,8 @@ public class MazeParser extends MonoBehaviour {
       public var playerController : GameObject;
       public var terminalPrefab : GameObject;
       public var maze : GameObject;
-
+	  public var playerPosition : Vector3;
+	
       private var numExits : int;
       private var firstExit : int;
       private var position : Vector3;
@@ -50,9 +51,7 @@ public class MazeParser extends MonoBehaviour {
                         }
 
                         if (cells[x, y].GetIsStart()) {
-                        	var player = Instantiate (playerController, position + Vector3.up, Quaternion.identity);
-                        	player.name = playerController.name;
-                        	player.transform.parent = maze.transform;
+                        	playerPosition = position + Vector3.up;
                         }
 
                         if (cells[x, y].GetIsTerminal()) {

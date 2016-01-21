@@ -16,14 +16,13 @@ public class Game extends MonoBehaviour {
 	private var parser : MazeParser;
 	private var cells : Cell[,];
 	private var _LevelTimer : LevelTimer;
-	public static var instance:Game;
+	private var playerTransform : Transform;
 
 	function Start () {
-		// make this object a singleton
-		
 		generator = GetComponent(MazeGenerator);
 		parser = GetComponent(MazeParser);
 		_LevelTimer = GetComponent.<LevelTimer>();
+		playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 		
     	GenerateLevel(UtcNow.TimeOfDay.TotalMilliseconds);
 	}
@@ -46,6 +45,7 @@ public class Game extends MonoBehaviour {
 		cells = generator.GenerateMaze(currentWidth, currentHeight, newSeed);
 		// create the maze from tile gameobjects using the data stored in the cells
 		parser.Parse(cells, currentWidth, currentHeight, tileSize);
+		playerTransform.position = parser.playerPosition;
 		
 	}
 	
