@@ -45,6 +45,7 @@ public class Game extends MonoBehaviour {
 		cells = generator.GenerateMaze(currentWidth, currentHeight, newSeed);
 		// create the maze from tile gameobjects using the data stored in the cells
 		parser.Parse(cells, currentWidth, currentHeight, tileSize);
+		playerTransform.gameObject.SetActive(true);
 		playerTransform.position = parser.playerPosition;
 		
 	}
