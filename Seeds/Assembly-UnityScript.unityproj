@@ -59,9 +59,10 @@
      <Compile Include="Assets\Scr\Player\NumberCollector.js" />
      <Compile Include="Assets\Scr\Player\PlayerInventory.js" />
      <Compile Include="Assets\Scr\Player\PlayerLook.js" />
+     <Compile Include="Assets\Scr\Player\PlayerMove.js" />
      <Compile Include="Assets\Scr\Player\TerminalSubmit.js" />
-     <Compile Include="Assets\Scr\Player\playerMove.js" />
      <Compile Include="Assets\Scr\UI\UIDisplayLevel.js" />
+     <Compile Include="Assets\Scr\UI\UIDisplayScore.js" />
      <Compile Include="Assets\Scr\UI\UIDisplayTime.js" />
      <Compile Include="Assets\Scr\UI\UIDisplayVelocity.js" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />

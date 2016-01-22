@@ -9,28 +9,29 @@ public class Game extends MonoBehaviour {
 	private var height : int = 4;
 	private var tileSize : int = 8;
 	public var collectedNumbers : int;
-	public var levelCounter : int = 0;
-
+	public var levelCounter : int = 1;
+	public var totalScore : int;
+	public var isRunning : boolean; // is the game running? set to false when the time runs out.
+	
     // private var player : GameObject;
 	private var generator : MazeGenerator;
 	private var parser : MazeParser;
 	private var cells : Cell[,];
 	private var _LevelTimer : LevelTimer;
-	private var playerTransform : Transform;
+	private var player : GameObject;
 
 	function Start () {
+		isRunning = true;
 		generator = GetComponent(MazeGenerator);
 		parser = GetComponent(MazeParser);
 		_LevelTimer = GetComponent.<LevelTimer>();
-		playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+		player = GameObject.FindGameObjectWithTag("Player");
 		
     	GenerateLevel(UtcNow.TimeOfDay.TotalMilliseconds);
 	}
 
 	function GenerateLevel (newSeed : int) {
 		print ("Game Seed: " + newSeed);
-	
-	    Time.timeScale = 1;
 		collectedNumbers = 0;
 	    
 	    // width and height of the level should be incrimented with the level counter
@@ -45,16 +46,23 @@ public class Game extends MonoBehaviour {
 		cells = generator.GenerateMaze(currentWidth, currentHeight, newSeed);
 		// create the maze from tile gameobjects using the data stored in the cells
 		parser.Parse(cells, currentWidth, currentHeight, tileSize);
-		playerTransform.gameObject.SetActive(true);
-		playerTransform.position = parser.playerPosition;
+		player.SetActive(true);
+		player.transform.position = parser.playerPosition;
 		
+	}
+
+	function Update () {
+		player.GetComponent.<PlayerLook>().canLook = isRunning;
+		player.GetComponent.<PlayerMove>().canMove = isRunning;
 	}
 	
 	// start the level again with the new seed
 	function TerminalSubmit(seed : int) {
 		// set the seed to the value submitted
 		if (seed == collectedNumbers){
-		// incriment the level counter
+			// add to the score for each number in the seed
+			totalScore += GetDigits(seed) * levelCounter;
+			// incriment the level counter
 			levelCounter++;
 			Destroy(parser.maze);
 			// generate a new maze
@@ -66,12 +74,18 @@ public class Game extends MonoBehaviour {
 	}
 
 	function NoTimeLeft(){
-		Time.timeScale = 0;
 		Debug.Log("No Time Left!");
+		isRunning = false;
 	}
 
 	function CollectNumber (number : int){
 		collectedNumbers *= 10;
 		collectedNumbers += number;
+	}
+	
+	function GetDigits(number : int) : int{
+		var log10 = Mathf.Log10(number);
+		var digits = Mathf.Floor(log10) + 1;
+		return digits;
 	}
 }

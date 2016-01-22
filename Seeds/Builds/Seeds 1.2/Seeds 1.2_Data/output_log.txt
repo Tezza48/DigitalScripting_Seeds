@@ -1,0 +1,296 @@
+Mono path[0] = 'D:/tezza/Documents/University/Uni Year Two/Digital Scripting/Digital_Scripting_Seeds/Seeds/Builds/Seeds 1.2/Seeds 1.2_Data/Managed'
+Mono path[1] = 'D:/tezza/Documents/University/Uni Year Two/Digital Scripting/Digital_Scripting_Seeds/Seeds/Builds/Seeds 1.2/Seeds 1.2_Data/Mono'
+Mono config path = 'D:/tezza/Documents/University/Uni Year Two/Digital Scripting/Digital_Scripting_Seeds/Seeds/Builds/Seeds 1.2/Seeds 1.2_Data/Mono/etc'
+PlayerConnection initialized from D:/tezza/Documents/University/Uni Year Two/Digital Scripting/Digital_Scripting_Seeds/Seeds/Builds/Seeds 1.2/Seeds 1.2_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55206
+Multi-casting "[IP] 192.168.1.6 [Port] 55206 [Flags] 2 [Guid] 1946373835 [EditorId] 3504949008 [Version] 1048832 [Id] WindowsPlayer(Will-PC) [Debug] 0" to [225.0.0.222:54997]...
+PlayerConnection already initialized - listening to [192.168.1.6:55206]
+Initialize engine version: 5.2.3f1 (f3d16a1fa2dd)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GT 640    (ID=0x1282)
+    Vendor:   NVIDIA
+    VRAM:     973 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.2\Seeds 1.2_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.2\Seeds 1.2_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.2\Seeds 1.2_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.2\Seeds 1.2_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.2\Seeds 1.2_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.2\Seeds 1.2_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.2\Seeds 1.2_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.2\Seeds 1.2_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.2\Seeds 1.2_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.2\Seeds 1.2_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.2\Seeds 1.2_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.055 seconds
+desktop: 1920x1080 60Hz; virtual: 3200x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.2\Seeds 1.2_Data\Managed\System.dll (this message is harmless)
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 2f0c -> priority: 1 
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 15.127376 ms
+System memory in use before: 40.4 MB.
+System memory in use after: 40.2 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 667.
+Total: 0.434036 ms (FindLiveObjects: 0.037742 ms CreateObjectMapping: 0.025161 ms MarkObjects: 0.317829 ms  DeleteObjects: 0.052640 ms)
+
+Platform assembly: D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.2\Seeds 1.2_Data\Managed\Boo.Lang.dll (this message is harmless)
+Game Seed: 66035978
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviourBindings.gen.cs:108)
+Game:GenerateLevel(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:34)
+Game:Start() (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:30)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviourBindings.gen.cs Line: 108)
+
+Width: 5Height 4
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviourBindings.gen.cs:108)
+MazeGenerator:GenerateMaze(Int32, Int32, Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Maze\MazeGenerator.js:8)
+Game:GenerateLevel(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:46)
+Game:Start() (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:30)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviourBindings.gen.cs Line: 108)
+
+Platform assembly: D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Builds\Seeds 1.2\Seeds 1.2_Data\Managed\UnityScript.Lang.dll (this message is harmless)
+Game Seed: 5253
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviourBindings.gen.cs:108)
+Game:GenerateLevel(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:34)
+Game:TerminalSubmit(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:69)
+TerminalSubmit:Submit() (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Player\TerminalSubmit.js:18)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:149)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:626)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:766)
+UnityEngine.Events.UnityEvent`1:Invoke(T0) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_1.cs:54)
+UnityEngine.UI.InputField:SendOnSubmit() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1366)
+UnityEngine.UI.InputField:DeactivateInputField() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:2058)
+UnityEngine.UI.InputField:OnUpdateSelected(BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1048)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IUpdateSelectedHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:101)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:SendUpdateEventToSelectedObject() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:300)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:168)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviourBindings.gen.cs Line: 108)
+
+Width: 6Height 6
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviourBindings.gen.cs:108)
+MazeGenerator:GenerateMaze(Int32, Int32, Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Maze\MazeGenerator.js:8)
+Game:GenerateLevel(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:46)
+Game:TerminalSubmit(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:69)
+TerminalSubmit:Submit() (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Player\TerminalSubmit.js:18)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:149)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:626)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:766)
+UnityEngine.Events.UnityEvent`1:Invoke(T0) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_1.cs:54)
+UnityEngine.UI.InputField:SendOnSubmit() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1366)
+UnityEngine.UI.InputField:DeactivateInputField() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:2058)
+UnityEngine.UI.InputField:OnUpdateSelected(BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1048)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IUpdateSelectedHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:101)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:SendUpdateEventToSelectedObject() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:300)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:168)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviourBindings.gen.cs Line: 108)
+
+Game Seed: 2
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviourBindings.gen.cs:108)
+Game:GenerateLevel(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:34)
+Game:TerminalSubmit(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:69)
+TerminalSubmit:Submit() (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Player\TerminalSubmit.js:18)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:149)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:626)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:766)
+UnityEngine.Events.UnityEvent`1:Invoke(T0) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_1.cs:54)
+UnityEngine.UI.InputField:SendOnSubmit() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1366)
+UnityEngine.UI.InputField:DeactivateInputField() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:2058)
+UnityEngine.UI.InputField:OnUpdateSelected(BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1048)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IUpdateSelectedHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:101)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:SendUpdateEventToSelectedObject() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:300)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:168)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviourBindings.gen.cs Line: 108)
+
+Width: 7Height 6
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviourBindings.gen.cs:108)
+MazeGenerator:GenerateMaze(Int32, Int32, Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Maze\MazeGenerator.js:8)
+Game:GenerateLevel(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:46)
+Game:TerminalSubmit(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:69)
+TerminalSubmit:Submit() (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Player\TerminalSubmit.js:18)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:149)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:626)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:766)
+UnityEngine.Events.UnityEvent`1:Invoke(T0) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_1.cs:54)
+UnityEngine.UI.InputField:SendOnSubmit() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1366)
+UnityEngine.UI.InputField:DeactivateInputField() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:2058)
+UnityEngine.UI.InputField:OnUpdateSelected(BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1048)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IUpdateSelectedHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:101)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:SendUpdateEventToSelectedObject() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:300)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:168)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviourBindings.gen.cs Line: 108)
+
+Game Seed: 217
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviourBindings.gen.cs:108)
+Game:GenerateLevel(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:34)
+Game:TerminalSubmit(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:69)
+TerminalSubmit:Submit() (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Player\TerminalSubmit.js:18)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:149)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:626)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:766)
+UnityEngine.Events.UnityEvent`1:Invoke(T0) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_1.cs:54)
+UnityEngine.UI.InputField:SendOnSubmit() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1366)
+UnityEngine.UI.InputField:DeactivateInputField() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:2058)
+UnityEngine.UI.InputField:OnUpdateSelected(BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1048)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IUpdateSelectedHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:101)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:SendUpdateEventToSelectedObject() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:300)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:168)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviourBindings.gen.cs Line: 108)
+
+Width: 8Height 8
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviourBindings.gen.cs:108)
+MazeGenerator:GenerateMaze(Int32, Int32, Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Maze\MazeGenerator.js:8)
+Game:GenerateLevel(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:46)
+Game:TerminalSubmit(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:69)
+TerminalSubmit:Submit() (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Player\TerminalSubmit.js:18)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:149)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:626)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:766)
+UnityEngine.Events.UnityEvent`1:Invoke(T0) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_1.cs:54)
+UnityEngine.UI.InputField:SendOnSubmit() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1366)
+UnityEngine.UI.InputField:DeactivateInputField() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:2058)
+UnityEngine.UI.InputField:OnUpdateSelected(BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1048)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IUpdateSelectedHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:101)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:SendUpdateEventToSelectedObject() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:300)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:168)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviourBindings.gen.cs Line: 108)
+
+Game Seed: 2872
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviourBindings.gen.cs:108)
+Game:GenerateLevel(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:34)
+Game:TerminalSubmit(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:69)
+TerminalSubmit:Submit() (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Player\TerminalSubmit.js:18)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:149)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:626)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:766)
+UnityEngine.Events.UnityEvent`1:Invoke(T0) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_1.cs:54)
+UnityEngine.UI.InputField:SendOnSubmit() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1366)
+UnityEngine.UI.InputField:DeactivateInputField() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:2058)
+UnityEngine.UI.InputField:OnUpdateSelected(BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1048)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IUpdateSelectedHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:101)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:SendUpdateEventToSelectedObject() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:300)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:168)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviourBindings.gen.cs Line: 108)
+
+Width: 9Height 8
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviourBindings.gen.cs:108)
+MazeGenerator:GenerateMaze(Int32, Int32, Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Maze\MazeGenerator.js:8)
+Game:GenerateLevel(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:46)
+Game:TerminalSubmit(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:69)
+TerminalSubmit:Submit() (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Player\TerminalSubmit.js:18)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:149)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:626)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:766)
+UnityEngine.Events.UnityEvent`1:Invoke(T0) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_1.cs:54)
+UnityEngine.UI.InputField:SendOnSubmit() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1366)
+UnityEngine.UI.InputField:DeactivateInputField() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:2058)
+UnityEngine.UI.InputField:OnUpdateSelected(BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1048)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IUpdateSelectedHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:101)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:SendUpdateEventToSelectedObject() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:300)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:168)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviourBindings.gen.cs Line: 108)
+
+Game Seed: 6717
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviourBindings.gen.cs:108)
+Game:GenerateLevel(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:34)
+Game:TerminalSubmit(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:69)
+TerminalSubmit:Submit() (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Player\TerminalSubmit.js:18)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:149)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:626)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:766)
+UnityEngine.Events.UnityEvent`1:Invoke(T0) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_1.cs:54)
+UnityEngine.UI.InputField:SendOnSubmit() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1366)
+UnityEngine.UI.InputField:DeactivateInputField() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:2058)
+UnityEngine.UI.InputField:OnUpdateSelected(BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1048)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IUpdateSelectedHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:101)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:SendUpdateEventToSelectedObject() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:300)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:168)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviourBindings.gen.cs Line: 108)
+
+Width: 10Height 10
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviourBindings.gen.cs:108)
+MazeGenerator:GenerateMaze(Int32, Int32, Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Maze\MazeGenerator.js:8)
+Game:GenerateLevel(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:46)
+Game:TerminalSubmit(Int32) (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:69)
+TerminalSubmit:Submit() (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Player\TerminalSubmit.js:18)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:149)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:626)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:766)
+UnityEngine.Events.UnityEvent`1:Invoke(T0) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_1.cs:54)
+UnityEngine.UI.InputField:SendOnSubmit() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1366)
+UnityEngine.UI.InputField:DeactivateInputField() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:2058)
+UnityEngine.UI.InputField:OnUpdateSelected(BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\InputField.cs:1048)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IUpdateSelectedHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:101)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:SendUpdateEventToSelectedObject() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:300)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:168)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviourBindings.gen.cs Line: 108)
+
+No Time Left!
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+Game:NoTimeLeft() (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\Game.js:77)
+LevelTimer:Update() (at D:\tezza\Documents\University\Uni Year Two\Digital Scripting\Digital_Scripting_Seeds\Seeds\Assets\Scr\Game\LevelTimer.js:21)
+ 
+(Filename: D:/tezza/Documents/University/Uni Year Two/Digital Scripting/Digital_Scripting_Seeds/Seeds/Assets/Scr/Game/Game.js Line: 77)
+

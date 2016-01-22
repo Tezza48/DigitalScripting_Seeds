@@ -5,5 +5,5 @@ function Start () {
 }
 
 function Update () {
-	transform.position = Camera.main.transform.position;
+		transform.position = Camera.current.GetComponent.<Transform>().position;
 }

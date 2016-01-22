@@ -1,10 +1,11 @@
 ﻿#pragma strict
 
-public var cameraLocked : boolean = false;
+public var canLook : boolean;
 private var lookClampX : float = 90f;
 private var lookSensitivity : float = 75;
 private var _Camera : Transform;
 private var mouseDelta : Vector2;
+private var _Game : Game;
 
 function Start () {
 	
@@ -14,13 +15,12 @@ function Start () {
 }
 
 function Update () {
-	
 	mouseDelta = new Vector2(-Input.GetAxisRaw("Mouse Y"), Input.GetAxisRaw("Mouse X"));
 	
 	mouseDelta = Vector2.Scale(mouseDelta, Vector2.one * lookSensitivity * Time.deltaTime);
 	
 	var cameraLocal = _Camera.localRotation.eulerAngles;
-	if (!cameraLocked){
+	if (canLook){
 		_Camera.localRotation = Quaternion.Euler(mouseDelta.x + cameraLocal.x, 0, 0);
 		transform.localRotation *= Quaternion.Euler(0, mouseDelta.y, 0);
 	}

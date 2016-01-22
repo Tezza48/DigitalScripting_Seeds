@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+public var canMove : boolean;
+
 private var rigid : Rigidbody;
 private var walkAccel : float = 50f;
 private var maxSpeed : float = 10f;
@@ -13,10 +15,12 @@ function FixedUpdate () {
 	var yInput = Input.GetAxisRaw("Vertical");
 	var direction = (xInput * transform.right + yInput * transform.forward).normalized;
 	var currentV = rigid.velocity;
-	if (direction != Vector3.zero)
-		rigid.velocity = MoveGround(direction, currentV);
-	else
-		rigid.velocity /= 2;
+	if (canMove) {
+		if (direction != Vector3.zero)
+			rigid.velocity = MoveGround(direction, currentV);
+		else
+			rigid.velocity /= 2;
+	}
 }
 
 function MoveGround (direction : Vector3, currentV : Vector3) : Vector3{
