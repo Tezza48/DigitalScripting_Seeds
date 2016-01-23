@@ -45,7 +45,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scr\ChangeLevel.js" />
      <Compile Include="Assets\Scr\FollowCamera.js" />
      <Compile Include="Assets\Scr\Game\DeveloperOptions.js" />
      <Compile Include="Assets\Scr\Game\Game.js" />
@@ -61,10 +60,12 @@
      <Compile Include="Assets\Scr\Player\PlayerLook.js" />
      <Compile Include="Assets\Scr\Player\PlayerMove.js" />
      <Compile Include="Assets\Scr\Player\TerminalSubmit.js" />
+     <Compile Include="Assets\Scr\UI\ChangeLevel.js" />
      <Compile Include="Assets\Scr\UI\UIDisplayLevel.js" />
      <Compile Include="Assets\Scr\UI\UIDisplayScore.js" />
      <Compile Include="Assets\Scr\UI\UIDisplayTime.js" />
      <Compile Include="Assets\Scr\UI\UIDisplayVelocity.js" />
+     <Compile Include="Assets\Scr\UI\UIMenuDisplayScore.js" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />

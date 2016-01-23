@@ -76,6 +76,7 @@ public class Game extends MonoBehaviour {
 	function NoTimeLeft(){
 		Debug.Log("No Time Left!");
 		isRunning = false;
+		SaveScore();
 	}
 
 	function CollectNumber (number : int){
@@ -87,5 +88,12 @@ public class Game extends MonoBehaviour {
 		var log10 = Mathf.Log10(number);
 		var digits = Mathf.Floor(log10) + 1;
 		return digits;
+	}
+	
+	// Impliment a score saving mechanic
+	function SaveScore () {
+		PlayerPrefs.SetInt("lastScore", totalScore);
+		if (PlayerPrefs.GetInt("topScore") < totalScore) 
+			PlayerPrefs.SetInt("topScore", totalScore);
 	}
 }

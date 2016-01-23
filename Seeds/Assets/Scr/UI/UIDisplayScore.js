@@ -2,6 +2,8 @@
 
 import UnityEngine.UI;
 
+public var menuButtonAnim : Animator;
+
 private var _Game : Game;
 private var _Text : Text;
 private var _Anim : Animator;
@@ -16,7 +18,8 @@ function Start () {
 function Update () {
 	_Text.text = "Seed Fragment Score: " + _Game.totalScore;
 	if (!isDown && !_Game.isRunning){
-		_Anim.SetTrigger("Fly In");
 		isDown = true;
+		_Anim.SetTrigger("Fly In");
+		menuButtonAnim.SetTrigger("Fly In");
 	}
 }

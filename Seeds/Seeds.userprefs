@@ -1,20 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scr\Game\Game.js">
-    <Files>
-      <File FileName="Assets\Scr\Player\EnterComputerTrigger.js" Line="1" Column="1" />
-      <File FileName="Assets\Scr\Maze\MazeParser.js" Line="1" Column="1" />
-      <File FileName="Assets\Scr\Game\Game.js" Line="56" Column="1" />
-      <File FileName="Assets\Scr\Maze\MazeGenerator.js" Line="1" Column="1" />
-      <File FileName="Assets\Scr\Player\NumberCollector.js" Line="1" Column="1" />
-      <File FileName="Assets\Scr\Player\PlayerLook.js" Line="23" Column="13" />
-      <File FileName="Assets\Scr\Player\playerMove.js" Line="1" Column="1" />
-      <File FileName="Assets\Scr\Maze\NumberItem.js" Line="1" Column="1" />
-      <File FileName="Assets\Scr\UI\UIDisplayScore.js" Line="1" Column="1" />
-      <File FileName="Assets\Scr\UI\UIDisplayTime.js" Line="1" Column="1" />
-      <File FileName="Assets\Scr\UI\UIDisplayLevel.js" Line="1" Column="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
