@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scr\Game\Game.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scr\UI\UIMenuDisplayScore.js">
     <Files>
-      <File FileName="Assets\Scr\Game\Game.js" Line="56" Column="1" />
+      <File FileName="Assets\Scr\Game\Game.js" Line="101" Column="47" />
+      <File FileName="Assets\Scr\Player\PlayerLook.js" Line="20" Column="28" />
+      <File FileName="Assets\Scr\UI\UIMenuDisplayScore.js" Line="25" Column="51" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

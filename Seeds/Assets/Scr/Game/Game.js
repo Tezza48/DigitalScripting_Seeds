@@ -19,8 +19,6 @@ public class Game extends MonoBehaviour {
 	private var cells : Cell[,];
 	private var _LevelTimer : LevelTimer;
 	private var player : GameObject;
-	
-	private var ppTopScore : int;
 
 	function Start () {
 		isRunning = true;
@@ -30,8 +28,6 @@ public class Game extends MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player");
 		
     	GenerateLevel(UtcNow.TimeOfDay.TotalMilliseconds);
-    	
-    	ppTopScore = PlayerPrefs.GetInt("topScore");
 	}
 
 	function GenerateLevel (newSeed : int) {
@@ -80,7 +76,6 @@ public class Game extends MonoBehaviour {
 	function NoTimeLeft(){
 		Debug.Log("No Time Left!");
 		isRunning = false;
-		SaveScore();
 	}
 
 	function CollectNumber (number : int){
@@ -92,12 +87,5 @@ public class Game extends MonoBehaviour {
 		var log10 = Mathf.Log10(number);
 		var digits = Mathf.Floor(log10) + 1;
 		return digits;
-	}
-	
-	// Impliment a score saving mechanic
-	function SaveScore () {
-		PlayerPrefs.SetInt("lastScore", totalScore);
-		if (ppTopScore < totalScore) 
-			PlayerPrefs.SetInt("topScore", totalScore);
 	}
 }

@@ -11,15 +11,18 @@ function Start () {
 }
 
 function FixedUpdate () {
-	var xInput = Input.GetAxisRaw("Horizontal");
-	var yInput = Input.GetAxisRaw("Vertical");
-	var direction = (xInput * transform.right + yInput * transform.forward).normalized;
-	var currentV = rigid.velocity;
 	if (canMove) {
+		var xInput = Input.GetAxisRaw("Horizontal");
+		var yInput = Input.GetAxisRaw("Vertical");
+		var direction = (xInput * transform.right + yInput * transform.forward).normalized;
+		var currentV = rigid.velocity;
 		if (direction != Vector3.zero)
 			rigid.velocity = MoveGround(direction, currentV);
 		else
 			rigid.velocity /= 2;
+	}
+	else {
+		rigid.velocity = Vector3.zero;
 	}
 }
 
