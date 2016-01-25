@@ -2,6 +2,8 @@
 
 import UnityEngine.UI;
 
+// display the score on a text object
+
 public var menuButtonAnim : Animator;
 
 private var _Game : Game;
@@ -18,6 +20,7 @@ function Start () {
 function Update () {
 	_Text.text = "Seed Fragment Score: " + _Game.totalScore;
 	if (!isDown && !_Game.isRunning){
+		// fly the score and menu button onscreen
 		isDown = true;
 		_Anim.SetTrigger("Fly In");
 		menuButtonAnim.SetTrigger("Fly In");

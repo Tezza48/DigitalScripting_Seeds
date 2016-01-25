@@ -46,12 +46,14 @@ public class Game extends MonoBehaviour {
 		cells = generator.GenerateMaze(currentWidth, currentHeight, newSeed);
 		// create the maze from tile gameobjects using the data stored in the cells
 		parser.Parse(cells, currentWidth, currentHeight, tileSize);
+		// activate the player and move it to the start position
 		player.SetActive(true);
 		player.transform.position = parser.playerPosition;
 		
 	}
 
 	function Update () {
+		// set whether the player can move and look
 		player.GetComponent.<PlayerLook>().canLook = isRunning;
 		player.GetComponent.<PlayerMove>().canMove = isRunning;
 	}
@@ -67,8 +69,12 @@ public class Game extends MonoBehaviour {
 			Destroy(parser.maze);
 			// generate a new maze
 			GenerateLevel(seed);
+			// set the cursor preferances again
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
 		}
 		else {
+			// deduct the time penalty
 			_LevelTimer.TimePenalty();
 		}
 	}
@@ -84,6 +90,7 @@ public class Game extends MonoBehaviour {
 	}
 	
 	function GetDigits(number : int) : int{
+		// return the number of digits in the int
 		var log10 = Mathf.Log10(number);
 		var digits = Mathf.Floor(log10) + 1;
 		return digits;

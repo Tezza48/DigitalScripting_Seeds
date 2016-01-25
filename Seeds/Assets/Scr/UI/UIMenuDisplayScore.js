@@ -2,6 +2,9 @@
 
 import UnityEngine.UI;
 
+// display the score variables on the main menu
+// unused
+
 public var topScore : boolean;
 
 private var _Text : Text;

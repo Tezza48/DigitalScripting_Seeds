@@ -2,6 +2,8 @@
 
 import UnityEngine.UI;
 
+// dev class for showing the velovity
+
 public var rigid : Rigidbody;
 public var _text : Text;
 

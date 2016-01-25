@@ -15,6 +15,7 @@ function Start () {
 }
 
 function Update () {
+	// display the current ammount of time left
 	levelTime = Time.timeSinceLevelLoad;
 	timeDiferance = timeLeft - levelTime;
 	if (timeDiferance <= 0 && running){

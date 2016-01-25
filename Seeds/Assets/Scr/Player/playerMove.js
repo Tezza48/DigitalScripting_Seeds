@@ -14,11 +14,14 @@ function FixedUpdate () {
 	if (canMove) {
 		var xInput = Input.GetAxisRaw("Horizontal");
 		var yInput = Input.GetAxisRaw("Vertical");
+		// create the acceleration vector
 		var direction = (xInput * transform.right + yInput * transform.forward).normalized;
 		var currentV = rigid.velocity;
 		if (direction != Vector3.zero)
+			// move
 			rigid.velocity = MoveGround(direction, currentV);
 		else
+			// slow down
 			rigid.velocity /= 2;
 	}
 	else {
@@ -28,6 +31,7 @@ function FixedUpdate () {
 
 function MoveGround (direction : Vector3, currentV : Vector3) : Vector3{
 	var newVelocity = currentV + direction * walkAccel * Time.deltaTime;
+	// check that the new velocity isn't greater than the maximum speed
 	if (newVelocity.magnitude > maxSpeed){
 		var delta = maxSpeed / newVelocity.magnitude;
 		newVelocity.x *= delta;

@@ -9,9 +9,6 @@ function Start () {
 }
 
 function Submit () {
-	// disable the mouse look
-	//GameObject.FindGameObjectWithTag("Player").GetComponent.<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().DisableLook = false;
-	
 	// submit the seed to Game
 	var givenSeed = parseInt(GetComponent.<InputField>().text);
 	if(givenSeed != 0)

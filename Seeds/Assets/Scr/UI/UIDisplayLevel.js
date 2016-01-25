@@ -2,6 +2,8 @@
 
 import UnityEngine.UI;
 
+// display the current level on the text object
+
 private var _Game : Game;
 private var _Text : Text;
 

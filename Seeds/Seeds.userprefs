@@ -2,9 +2,19 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scr\UI\UIMenuDisplayScore.js">
     <Files>
-      <File FileName="Assets\Scr\Game\Game.js" Line="101" Column="47" />
-      <File FileName="Assets\Scr\Player\PlayerLook.js" Line="20" Column="28" />
-      <File FileName="Assets\Scr\UI\UIMenuDisplayScore.js" Line="25" Column="51" />
+      <File FileName="Assets\Scr\Game\LevelTimer.js" Line="18" Column="45" />
+      <File FileName="Assets\Scr\Maze\Cell.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\Maze\NumberItem.js" Line="6" Column="57" />
+      <File FileName="Assets\Scr\Player\EnterComputerTrigger.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\Player\NumberCollector.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\Player\PlayerInventory.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\Player\TerminalSubmit.js" Line="11" Column="21" />
+      <File FileName="Assets\Scr\UI\ChangeLevel.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\UI\UIDisplayLevel.js" Line="5" Column="48" />
+      <File FileName="Assets\Scr\UI\UIDisplayScore.js" Line="23" Column="36" />
+      <File FileName="Assets\Scr\UI\UIDisplayTime.js" Line="1" Column="1" />
+      <File FileName="Assets\Scr\UI\UIDisplayVelocity.js" Line="5" Column="38" />
+      <File FileName="Assets\Scr\UI\UIMenuDisplayScore.js" Line="6" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
