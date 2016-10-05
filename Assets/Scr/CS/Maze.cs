@@ -1,35 +1,46 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+//using System;
 
 public class Maze
 {
     #region Fields Private
     //private int seed;
-    private int width, height;
+    //private int width, height;
     private Cell[,] cells;
-    private Vector2 spawn;
-    private Vector2 terminal;
-    private List<Vector2> fragmentSpawns;
+    private Vector2 playerSpawn;
+    private Vector2 terminalSpawn;
+    private Dictionary<int, List<Vector2>> fragmentSpawns;
 
     #endregion
 
     #region Getters
     public Cell[,] Cells { get { return cells; } }
+
+    public Vector2 TerminalSpawn { get { return terminalSpawn; } }
+
+    public Vector2 PlayerSpawn { get { return playerSpawn; }}
+
+    public Dictionary<int, List<Vector2>> FragmentSpawns { get { return fragmentSpawns; } } 
     #endregion
 
     #region Constructors
-    public Maze()
+    public Maze(int maxFragmentValue)
     {
         //seed = 0;
         //width = 0;
         //height = 0; ;
-        fragmentSpawns = new List<Vector2>();
+        fragmentSpawns = new Dictionary<int, List<Vector2>>();
+        for (int i = 0; i < maxFragmentValue; i++)
+        {
+            fragmentSpawns.Add(i, new List<Vector2>());
+        }
     }
     #endregion
 
     #region Methods
 
-    public void Generate (int _width, int _height)
+    public void Generate (int _width, int _height, Vector2 fragmentGenRange)
     {
         cells = new Cell[_width, _height];
         Cell.Direction availableDir;
@@ -54,11 +65,34 @@ public class Maze
                 // Add Exit To next cell and back
                 AddExits(clearDir, y, x);
 
-                // Add Player and Terminal
 
-                // Add Fragments
             }
         }
+        // Add Player and Terminal
+        playerSpawn = PickCartesian(_width, _height);
+        terminalSpawn = PickCartesian(_width, _height, playerSpawn);
+        // Add Fragments
+    }
+
+    private Cell.Direction PickDirection(Cell.Direction availableDir)
+    {
+        Cell.Direction clearDir;
+        switch (availableDir)
+        {
+            case Cell.Direction.North:
+                clearDir = Cell.Direction.North;
+                break;
+            case Cell.Direction.West:
+                clearDir = Cell.Direction.West;
+                break;
+            case Cell.Direction.North | Cell.Direction.West:
+                clearDir = Random.Range(0, 2) == 1 ? Cell.Direction.North : Cell.Direction.West;
+                break;
+            default:
+                clearDir = Cell.Direction.NONE;
+                break;
+        }
+        return clearDir;
     }
 
     private void AddExits(Cell.Direction clearDir, int y, int x)
@@ -79,26 +113,43 @@ public class Maze
         }
     }
 
-    private static Cell.Direction PickDirection(Cell.Direction availableDir)
+    #region Pick Cartesian
+    private Vector2 PickCartesian(int _width, int _height)
     {
-        Cell.Direction clearDir;
-        switch (availableDir)
-        {
-            case Cell.Direction.North:
-                clearDir = Cell.Direction.North;
-                break;
-            case Cell.Direction.West:
-                clearDir = Cell.Direction.West;
-                break;
-            case Cell.Direction.North | Cell.Direction.West:
-                clearDir = Random.Range(0, 2) == 1 ? Cell.Direction.North : Cell.Direction.West;
-                break;
-            default:
-                clearDir = Cell.Direction.NONE;
-                break;
-        }
-        return clearDir;
+        return new Vector2(Random.Range(0, _width), Random.Range(0, _height));
     }
+
+    private Vector2 PickCartesian(int _width, int _height, Vector2 check)
+    {
+        Vector2 newPos = Vector2.zero;
+        bool isValid = true;
+        do
+        {
+            newPos = PickCartesian(_width, _height);
+            // Check this vector against other points to make sure it's not overlapping an existing position
+            isValid = !newPos.Equals(check);
+        }
+        while (!isValid);
+        return newPos;
+    }
+
+    private Vector2 PickCartesian(int _width, int _height, List<Vector2> exclude)
+    {
+        Vector2 newPos = Vector2.zero;
+        bool isValid = true;
+        do
+        {
+            newPos = PickCartesian(_width, _height);
+            // Check this vector against other points to make sure it's not overlapping an existing position
+            foreach (Vector2 checkVec in exclude)
+            {
+                isValid = newPos != checkVec;
+            }
+        }
+        while (!isValid);
+        return newPos;
+    }
+    #endregion
 
     #endregion
 }

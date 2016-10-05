@@ -17,8 +17,17 @@ public class Game : MonoBehaviour
     private int level = 4;
 
     private Maze maze;
-    private GameObject mazeParent;
-    //private List<GameObject> spawnedTiles;
+
+    #region Object Pools
+    private Dictionary<MazeTiles, List<Transform>> spawnedTiles;
+    private Dictionary<int, List<Transform>> spawnedFragments;
+    #endregion
+
+    #region Transform Holders
+    private Transform mazeParent;
+    private Transform playerTransform;
+    private Transform terminalTransform;
+    #endregion
 
     #region Maze Tile Prefabs
     [Header("Maze Tiles")]
@@ -29,6 +38,13 @@ public class Game : MonoBehaviour
     public GameObject junction;
     #endregion
 
+    #region Prefabs
+    [Header("Spawn Prefabs")]
+    public GameObject playerPrefab;
+    public GameObject terminalPrefab;
+    public List<GameObject> fragmentPrefabs;
+    #endregion
+
     #region Generate Settings
     private int tileSize = 8;
     #endregion
@@ -36,33 +52,54 @@ public class Game : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        mazeParent = (new GameObject("Maze")).GetComponent<Transform>();
+
+        spawnedTiles = new Dictionary<MazeTiles, List<Transform>>();
+        spawnedFragments = new Dictionary<int, List<Transform>>();
+
+        #region Init Dictionaries
+        foreach (MazeTiles currentTile in Enum.GetValues(typeof(MazeTiles)))
+        {
+            spawnedTiles.Add(currentTile, new List<Transform>());
+        }
+
+        for (int i = 0; i < fragmentPrefabs.Count; i++)
+        {
+            spawnedFragments.Add(i, new List<Transform>());
+        }
+        #endregion
+        
+        UnityEngine.Random.InitState(System.DateTime.UtcNow.TimeOfDay.Seconds);
+
         GenerateLevel(0);
-        mazeParent = new GameObject("Maze Holder");
-        //spawnedTiles = new List<GameObject>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-	
+	    
 	}
 
     public void GenerateLevel(int _seed)
     {
-        maze = new Maze();
-        maze.Generate(level, level);
+        maze = new Maze(fragmentPrefabs.Count);
+        maze.Generate(level, level, new Vector2(level, Mathf.Pow(level, 2)/2));
         InstantiateMaze(maze, level, level);
     }
+    
 
     private void InstantiateMaze(Maze maze, int width, int height)
     {
+        // type of tile to use for the next
         MazeTiles newTile = MazeTiles.NULL;
+        // * this by 90 to get the desired location
         int rotationMulti = 0;
         for (int y = 0; y < height; y++)
         {
             for (int x = 0; x < width; x++)
             {
-                switch(maze.Cells[x, y].Exits)
+                // Figure out which tile you need to match the current cell
+                switch (maze.Cells[x, y].Exits)
                 {
                     #region Deadends
                     case Cell.Direction.North:
@@ -138,30 +175,59 @@ public class Game : MonoBehaviour
                     default:
                         break;
                 }
-                switch (newTile)
-                {
-                    case MazeTiles.Deadend:
-                        Instantiate(deadend, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f));
-                        break;
-                    case MazeTiles.Corner:
-                        Instantiate(corner, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f));
-                        break;
-                    case MazeTiles.Hallway:
-                        Instantiate(hallway, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f));
-                        break;
-                    case MazeTiles.Juntion:
-                        Instantiate(junction, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f));
-                        break;
-                    case MazeTiles.Cross:
-                        Instantiate(cross, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f));
-                        break;
-                    case MazeTiles.NULL:
-                    default:
-                        break;
-                }
+                // Instantiate the tile
+                InstantiateTile(newTile, rotationMulti, y, x);
+            }
+        }
+
+        // Instantiate Player Prefab
+        playerTransform = ((GameObject)Instantiate(playerPrefab, getVec3xz(maze.PlayerSpawn) * tileSize, Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), Vector3.up))).GetComponent<Transform>();
+
+        // Instantiate Terminal Prefab
+        terminalTransform = ((GameObject)Instantiate(terminalPrefab, getVec3xz(maze.TerminalSpawn) * tileSize, Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), Vector3.up))).GetComponent<Transform>();
+
+        // Instantiate Fragments
+        for (int i = 0; i < fragmentPrefabs.Count; i++)
+        {
+            foreach (Vector2 currentPos in maze.FragmentSpawns[i])
+            {
+                spawnedFragments[i].Add(((GameObject)Instantiate(fragmentPrefabs[i], getVec3xz(currentPos), Quaternion.identity)).GetComponent<Transform>());
             }
         }
     }
+
+    private void InstantiateTile(MazeTiles newTile, int rotationMulti, int y, int x)
+    {
+        switch (newTile)
+        {
+            case MazeTiles.Deadend:
+                Instantiate(deadend, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f), mazeParent);
+                break;
+            case MazeTiles.Corner:
+                Instantiate(corner, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f), mazeParent);
+                break;
+            case MazeTiles.Hallway:
+                Instantiate(hallway, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f), mazeParent);
+                break;
+            case MazeTiles.Juntion:
+                Instantiate(junction, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f), mazeParent);
+                break;
+            case MazeTiles.Cross:
+                Instantiate(cross, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f), mazeParent);
+                break;
+            case MazeTiles.NULL:
+            default:
+                break;
+        }
+    }
+
+
+    #region Helper Methods
+    Vector3 getVec3xz(Vector2 xzVec)
+    {
+        return new Vector3(xzVec.x, 0, -xzVec.y);
+    }
+    #endregion
 
     //public void TerminalSubmit(int _seed)
     //{
