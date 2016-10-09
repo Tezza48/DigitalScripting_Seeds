@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//#define SERIALIZE_FIELDS
+
+using UnityEngine;
 using System.Collections.Generic;
 using System;
 
@@ -16,7 +18,12 @@ public class Game : MonoBehaviour
 {
     private int level = 4;
 
+#if SERIALIZE_FIELDS
+    [SerializeField]
+#endif
     private Maze maze;
+    private CanvasController canvas;
+    private PlayerController playerController;
 
     #region Object Pools
     private Dictionary<MazeTiles, List<Transform>> spawnedTiles;
@@ -47,6 +54,19 @@ public class Game : MonoBehaviour
 
     #region Generate Settings
     private int tileSize = 8;
+
+    public PlayerController PlayerController
+    {
+        get
+        {
+            return playerController;
+        }
+
+        set
+        {
+            playerController = value;
+        }
+    }
     #endregion
 
     // Use this for initialization
@@ -56,6 +76,8 @@ public class Game : MonoBehaviour
 
         spawnedTiles = new Dictionary<MazeTiles, List<Transform>>();
         spawnedFragments = new Dictionary<int, List<Transform>>();
+
+        canvas = FindObjectOfType<CanvasController>();
 
         #region Init Dictionaries
         foreach (MazeTiles currentTile in Enum.GetValues(typeof(MazeTiles)))
@@ -77,7 +99,7 @@ public class Game : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-	    
+        canvas.SetInteractText(playerController.Interaction);
 	}
 
     public void GenerateLevel(int _seed)
@@ -182,16 +204,24 @@ public class Game : MonoBehaviour
 
         // Instantiate Player Prefab
         playerTransform = ((GameObject)Instantiate(playerPrefab, getVec3xz(maze.PlayerSpawn) * tileSize, Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), Vector3.up))).GetComponent<Transform>();
+        playerTransform.GetComponent<PlayerController>().Init(this);
 
         // Instantiate Terminal Prefab
         terminalTransform = ((GameObject)Instantiate(terminalPrefab, getVec3xz(maze.TerminalSpawn) * tileSize, Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), Vector3.up))).GetComponent<Transform>();
 
         // Instantiate Fragments
-        for (int i = 0; i < fragmentPrefabs.Count; i++)
+        foreach (KeyValuePair<int, List<Vector2>> item in maze.FragmentSpawns)
         {
-            foreach (Vector2 currentPos in maze.FragmentSpawns[i])
+            foreach (Vector2 currentPos in item.Value)
             {
-                spawnedFragments[i].Add(((GameObject)Instantiate(fragmentPrefabs[i], getVec3xz(currentPos), Quaternion.identity)).GetComponent<Transform>());
+
+                Transform newFrag = ((GameObject)Instantiate(
+                    fragmentPrefabs[item.Key], 
+                    (getVec3xz(currentPos) * tileSize) + (Vector3.up * 3), 
+                    Quaternion.identity)
+                ).GetComponent<Transform>();
+
+                spawnedFragments[item.Key].Add(newFrag);
             }
         }
     }
@@ -239,10 +269,10 @@ public class Game : MonoBehaviour
 
     //}
 
-    //public void CollectNumber()
-    //{
+    public void CollectNumber(int _number)
+    {
 
-    //}
+    }
 
     //public void GetDigits()
     //{

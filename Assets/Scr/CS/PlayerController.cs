@@ -1,17 +1,37 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
-using System;
+using UnityEngine;
+
+public enum Interaction
+{
+None,
+Terminal,
+Number,
+Collectable
+}
 
 public class PlayerController : MonoBehaviour
 {
-    Vector3 velocity;
-    float accel = 100f;
-    float maxSpeed = 20f;
-    Rigidbody _Rigidbody;
-
-    float lookSpeed = 10;
+    private Game _Game;
+    private Interaction interaction = Interaction.None;
+    private Rigidbody _Rigidbody;
+    //private Vector3 velocity;
+    private bool canMove = true;
 
     public Transform cameraT;
+
+    public const float accel = 100f;
+    public const float interactMaxDist = 3f;
+    public const float lookSpeed = 10;
+    public const float maxSpeed = 20f;
+
+    public Interaction Interaction
+    {
+        get
+        {
+            return interaction;
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -19,16 +39,65 @@ public class PlayerController : MonoBehaviour
         _Rigidbody = GetComponent<Rigidbody>();
     }
 
+    public void Init(Game _game)
+    {
+        _Game = _game;
+        _Game.PlayerController = this;
+    }
+
     public void Update()
     {
         Look();
-
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    public void FixedUpdate()
     {
         Move();
+        InteractionRay();
+    }
+
+    private void InteractionRay()
+    {
+        RaycastHit ray;
+        if (Physics.Raycast(cameraT.position, cameraT.forward, out ray, interactMaxDist, (int)Mathf.Pow(2, 8)))
+        {
+            Debug.DrawLine(cameraT.position, ray.point, Color.yellow, 0f, true);
+            interaction = FindInteraction(ray);
+            if (Input.GetButtonUp("Use"))
+            {
+                switch (interaction)
+                {
+                    case Interaction.Terminal:
+                        Terminal terminal = ray.collider.GetComponent<Terminal>();
+                        terminal.Use();
+                        break;
+                    case Interaction.Number:
+                        Fragment fragment = ray.collider.GetComponent<Fragment>();
+                        _Game.CollectNumber(fragment.Use());
+                        break;
+                    case Interaction.Collectable:
+                        //break;
+                    default:
+                        break;
+                }
+            }
+        }
+        else
+        {
+            interaction = Interaction.None;
+        }
+    }
+
+    private Interaction FindInteraction(RaycastHit ray)
+    {
+        switch (ray.collider.tag)
+        {
+            case "Terminal":
+                return Interaction.Terminal;
+            case "Number":
+            default:
+                return Interaction.None;
+        }
     }
 
     private void Look()
@@ -41,23 +110,6 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        //Vector3 newDir = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal");
-        //if (newDir != Vector3.zero)
-        //{
-        //    newDir.Normalize();
-        //    velocity += newDir * accel;
-        //    if (velocity.magnitude >= maxSpeed)
-        //    {
-        //        velocity = newDir * maxSpeed;
-        //    }
-        //}
-        //else
-        //{
-        //    velocity += -velocity.normalized * accel;
-        //}
-        //_Rigidbody.MovePosition(transform.position + velocity);
-
-
         // create the acceleration vector
         Vector3 newDir = transform.forward * Input.GetAxisRaw("Vertical") + transform.right * Input.GetAxisRaw("Horizontal");
         newDir.Normalize();
@@ -66,11 +118,9 @@ public class PlayerController : MonoBehaviour
             _Rigidbody.velocity = MoveGround(newDir, currentV);
         else
             _Rigidbody.velocity /= 2;
-
-
     }
 
-    Vector3 MoveGround(Vector3 direction, Vector3 currentV)
+    private Vector3 MoveGround(Vector3 direction, Vector3 currentV)
     {
         Vector3 newVelocity = currentV + direction * accel * Time.deltaTime;
         // check that the new velocity isn't greater than the maximum speed

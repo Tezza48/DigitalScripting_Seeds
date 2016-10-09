@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 //using System;
 
+[System.Serializable]
 public class Maze
 {
     #region Fields Private
     //private int seed;
     //private int width, height;
+
     private Cell[,] cells;
     private Vector2 playerSpawn;
     private Vector2 terminalSpawn;
@@ -71,7 +73,15 @@ public class Maze
         // Add Player and Terminal
         playerSpawn = PickCartesian(_width, _height);
         terminalSpawn = PickCartesian(_width, _height, playerSpawn);
+
         // Add Fragments
+        int fragsToSpawn = (int)Random.Range(fragmentGenRange.x, fragmentGenRange.y);
+        int newFragment;
+        for (int i = 0; i < fragsToSpawn; i++)
+        {
+            newFragment = Random.Range(0, 10);
+            fragmentSpawns[i].Add(PickCartesian(_width, _height, fragmentSpawns.Values));
+        }
     }
 
     private Cell.Direction PickDirection(Cell.Direction availableDir)
@@ -133,18 +143,19 @@ public class Maze
         return newPos;
     }
 
-    private Vector2 PickCartesian(int _width, int _height, List<Vector2> exclude)
+    private Vector2 PickCartesian(int _width, int _height, Dictionary<int, List<Vector2>>.ValueCollection exclude)
     {
         Vector2 newPos = Vector2.zero;
         bool isValid = true;
         do
         {
             newPos = PickCartesian(_width, _height);
-            // Check this vector against other points to make sure it's not overlapping an existing position
-            foreach (Vector2 checkVec in exclude)
-            {
-                isValid = newPos != checkVec;
-            }
+            // Check this vector against other points to make sure it's not overlapping an existing positionforeach (Vector2 checkVec in pair.Value)
+            foreach(List<Vector2> checkList in exclude)
+                foreach(Vector2 checkVec in checkList)
+                {
+                    isValid = !newPos.Equals(checkVec);
+                }
         }
         while (!isValid);
         return newPos;

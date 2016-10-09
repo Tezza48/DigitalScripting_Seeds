@@ -1,8 +1,9 @@
-﻿using System;
+﻿//using System;
 
+[System.Serializable]
 public class Cell
 {
-    [Flags]
+    [System.Flags][System.Serializable]
     public enum Direction
     {
         NONE = 0,
@@ -21,7 +22,7 @@ public class Cell
     //    South = 1,
     //    West = 2
     //}
-
+    
     private Direction exits;
 
     public Direction Exits { get { return exits; } set { exits = value; } }
