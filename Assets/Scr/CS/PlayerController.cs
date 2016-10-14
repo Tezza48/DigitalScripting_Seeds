@@ -52,7 +52,8 @@ public class PlayerController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        Move();
+        if (canMove)
+            Move();
         InteractionRay();
     }
 
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour
                         terminal.Use();
                         break;
                     case Interaction.Number:
-                        Fragment fragment = ray.collider.GetComponent<Fragment>();
+                        GameFragment fragment = ray.collider.GetComponent<GameFragment>();
                         _Game.CollectNumber(fragment.Use());
                         break;
                     case Interaction.Collectable:
@@ -95,6 +96,7 @@ public class PlayerController : MonoBehaviour
             case "Terminal":
                 return Interaction.Terminal;
             case "Number":
+                return Interaction.Number;
             default:
                 return Interaction.None;
         }

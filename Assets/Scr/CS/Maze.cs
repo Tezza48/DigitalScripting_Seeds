@@ -5,16 +5,15 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Maze
 {
-    #region Fields Private
     //private int seed;
     //private int width, height;
 
     private Cell[,] cells;
     private Vector2 playerSpawn;
     private Vector2 terminalSpawn;
-    private Dictionary<int, List<Vector2>> fragmentSpawns;
+    private List<Fragment> fragmentSpawns;
 
-    #endregion
+    private const int maxFragment = 9;
 
     #region Getters
     public Cell[,] Cells { get { return cells; } }
@@ -23,27 +22,24 @@ public class Maze
 
     public Vector2 PlayerSpawn { get { return playerSpawn; }}
 
-    public Dictionary<int, List<Vector2>> FragmentSpawns { get { return fragmentSpawns; } } 
+    public List<Fragment> FragmentSpawns { get { return fragmentSpawns; } } 
     #endregion
 
     #region Constructors
-    public Maze(int maxFragmentValue)
+    public Maze()
     {
         //seed = 0;
         //width = 0;
         //height = 0; ;
-        fragmentSpawns = new Dictionary<int, List<Vector2>>();
-        for (int i = 0; i < maxFragmentValue; i++)
-        {
-            fragmentSpawns.Add(i, new List<Vector2>());
-        }
+        fragmentSpawns = new List<Fragment>();
     }
     #endregion
 
     #region Methods
 
-    public void Generate (int _width, int _height, Vector2 fragmentGenRange)
+    public void Generate (int _width, int _height, Vector2 fragmentGenRange, uint seed)
     {
+        Random.InitState((int)seed);
         cells = new Cell[_width, _height];
         Cell.Direction availableDir;
         Cell.Direction clearDir;
@@ -63,7 +59,7 @@ public class Maze
 
                 // Pick what Direction to connect this cell to
                 clearDir = PickDirection(availableDir);
-                
+
                 // Add Exit To next cell and back
                 AddExits(clearDir, y, x);
 
@@ -75,12 +71,38 @@ public class Maze
         terminalSpawn = PickCartesian(_width, _height, playerSpawn);
 
         // Add Fragments
+        GenerateFrags(_width, _height, fragmentGenRange);
+    }
+
+    private void GenerateFrags(int _width, int _height, Vector2 fragmentGenRange)
+    {
         int fragsToSpawn = (int)Random.Range(fragmentGenRange.x, fragmentGenRange.y);
-        int newFragment;
+        Fragment newFragment;
+
         for (int i = 0; i < fragsToSpawn; i++)
         {
-            newFragment = Random.Range(0, 10);
-            fragmentSpawns[i].Add(PickCartesian(_width, _height, fragmentSpawns.Values));
+            newFragment = new Fragment(
+                PickCartesian(_width, _height, fragmentSpawns),
+                Random.Range(1, maxFragment + 1));
+            fragmentSpawns.Add(newFragment);
+        }
+    }
+
+    private void AddExits(Cell.Direction clearDir, int y, int x)
+    {
+        switch (clearDir)
+        {
+            case Cell.Direction.North:
+                cells[x, y].Exits |= Cell.Direction.North;
+                cells[x, y - 1].Exits |= Cell.Direction.South;
+                break;
+            case Cell.Direction.West:
+                cells[x, y].Exits |= Cell.Direction.West;
+                cells[x - 1, y].Exits |= Cell.Direction.East;
+                break;
+            case Cell.Direction.NONE:
+            default:
+                break;
         }
     }
 
@@ -105,24 +127,6 @@ public class Maze
         return clearDir;
     }
 
-    private void AddExits(Cell.Direction clearDir, int y, int x)
-    {
-        switch (clearDir)
-        {
-            case Cell.Direction.North:
-                cells[x, y].Exits |= Cell.Direction.North;
-                cells[x, y - 1].Exits |= Cell.Direction.South;
-                break;
-            case Cell.Direction.West:
-                cells[x, y].Exits |= Cell.Direction.West;
-                cells[x - 1, y].Exits |= Cell.Direction.East;
-                break;
-            case Cell.Direction.NONE:
-            default:
-                break;
-        }
-    }
-
     #region Pick Cartesian
     private Vector2 PickCartesian(int _width, int _height)
     {
@@ -143,7 +147,7 @@ public class Maze
         return newPos;
     }
 
-    private Vector2 PickCartesian(int _width, int _height, Dictionary<int, List<Vector2>>.ValueCollection exclude)
+    private Vector2 PickCartesian(int _width, int _height, List<Fragment> exclude)
     {
         Vector2 newPos = Vector2.zero;
         bool isValid = true;
@@ -151,11 +155,10 @@ public class Maze
         {
             newPos = PickCartesian(_width, _height);
             // Check this vector against other points to make sure it's not overlapping an existing positionforeach (Vector2 checkVec in pair.Value)
-            foreach(List<Vector2> checkList in exclude)
-                foreach(Vector2 checkVec in checkList)
-                {
-                    isValid = !newPos.Equals(checkVec);
-                }
+            foreach(Fragment checkVec in exclude)
+            {
+                isValid = !newPos.Equals(checkVec);
+            }
         }
         while (!isValid);
         return newPos;

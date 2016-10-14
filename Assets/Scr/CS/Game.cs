@@ -16,18 +16,18 @@ public enum MazeTiles
 
 public class Game : MonoBehaviour
 {
+    #region Gameplay Variables
     private int level = 4;
+    private ulong collectedSeed;
+    #endregion
 
-#if SERIALIZE_FIELDS
-    [SerializeField]
-#endif
     private Maze maze;
     private CanvasController canvas;
     private PlayerController playerController;
 
     #region Object Pools
-    private Dictionary<MazeTiles, List<Transform>> spawnedTiles;
-    private Dictionary<int, List<Transform>> spawnedFragments;
+    private Dictionary<MazeTiles, Transform> spawnedTiles;
+    private List<Transform> spawnedFragments;
     #endregion
 
     #region Transform Holders
@@ -35,65 +35,50 @@ public class Game : MonoBehaviour
     private Transform playerTransform;
     private Transform terminalTransform;
     #endregion
+    
+    #region Prefabs
 
     #region Maze Tile Prefabs
+
     [Header("Maze Tiles")]
     public GameObject corner;
     public GameObject cross;
     public GameObject deadend;
     public GameObject hallway;
     public GameObject junction;
+
     #endregion
 
-    #region Prefabs
     [Header("Spawn Prefabs")]
     public GameObject playerPrefab;
     public GameObject terminalPrefab;
-    public List<GameObject> fragmentPrefabs;
+    public GameObject fragmentPrefab;
+    [SerializeField]
+    private Mesh[] fragmentMeshes;
+
     #endregion
 
     #region Generate Settings
     private int tileSize = 8;
-
-    public PlayerController PlayerController
-    {
-        get
-        {
-            return playerController;
-        }
-
-        set
-        {
-            playerController = value;
-        }
-    }
     #endregion
+
+    public PlayerController PlayerController { get { return playerController; } set { playerController = value; } }
 
     // Use this for initialization
     void Start ()
     {
+        maze = new Maze();
+
         mazeParent = (new GameObject("Maze")).GetComponent<Transform>();
 
-        spawnedTiles = new Dictionary<MazeTiles, List<Transform>>();
-        spawnedFragments = new Dictionary<int, List<Transform>>();
+        spawnedTiles = new Dictionary<MazeTiles, Transform>();
+        spawnedFragments = new List<Transform>();
 
         canvas = FindObjectOfType<CanvasController>();
-
-        #region Init Dictionaries
-        foreach (MazeTiles currentTile in Enum.GetValues(typeof(MazeTiles)))
-        {
-            spawnedTiles.Add(currentTile, new List<Transform>());
-        }
-
-        for (int i = 0; i < fragmentPrefabs.Count; i++)
-        {
-            spawnedFragments.Add(i, new List<Transform>());
-        }
-        #endregion
         
         UnityEngine.Random.InitState(System.DateTime.UtcNow.TimeOfDay.Seconds);
 
-        GenerateLevel(0);
+        GenerateLevel((uint)UnityEngine.Random.Range(int.MinValue, int.MaxValue));
 	}
 	
 	// Update is called once per frame
@@ -102,10 +87,9 @@ public class Game : MonoBehaviour
         canvas.SetInteractText(playerController.Interaction);
 	}
 
-    public void GenerateLevel(int _seed)
+    public void GenerateLevel(uint _seed)
     {
-        maze = new Maze(fragmentPrefabs.Count);
-        maze.Generate(level, level, new Vector2(level, Mathf.Pow(level, 2)/2));
+        maze.Generate(level, level, new Vector2(level, Mathf.Pow(level, 2)/2), _seed);
         InstantiateMaze(maze, level, level);
     }
     
@@ -121,108 +105,117 @@ public class Game : MonoBehaviour
             for (int x = 0; x < width; x++)
             {
                 // Figure out which tile you need to match the current cell
-                switch (maze.Cells[x, y].Exits)
-                {
-                    #region Deadends
-                    case Cell.Direction.North:
-                        newTile = MazeTiles.Deadend;
-                        rotationMulti = 0;
-                        break;
-                    case Cell.Direction.East:
-                        newTile = MazeTiles.Deadend;
-                        rotationMulti = 1;
-                        break;
-                    case Cell.Direction.South:
-                        newTile = MazeTiles.Deadend;
-                        rotationMulti = 2;
-                        break;
-                    case Cell.Direction.West:
-                        newTile = MazeTiles.Deadend;
-                        rotationMulti = 3;
-                        break;
-                    #endregion
-                    #region Corners
-                    case Cell.Direction.North | Cell.Direction.East:
-                        newTile = MazeTiles.Corner;
-                        rotationMulti = 0;
-                        break;
-                    case Cell.Direction.East | Cell.Direction.South:
-                        newTile = MazeTiles.Corner;
-                        rotationMulti = 1;
-                        break;
-                    case Cell.Direction.South | Cell.Direction.West:
-                        newTile = MazeTiles.Corner;
-                        rotationMulti = 2;
-                        break;
-                    case Cell.Direction.West | Cell.Direction.North:
-                        newTile = MazeTiles.Corner;
-                        rotationMulti = 3;
-                        break;
-                    #endregion
-                    #region Hallways
-                    case Cell.Direction.North | Cell.Direction.South:
-                        newTile = MazeTiles.Hallway;
-                        rotationMulti = 0;
-                        break;
-                    case Cell.Direction.East | Cell.Direction.West:
-                        newTile = MazeTiles.Hallway;
-                        rotationMulti = 1;
-                        break;
-                    #endregion
-                    #region Junctions
-                    case Cell.Direction.North | Cell.Direction.East | Cell.Direction.South:
-                        newTile = MazeTiles.Juntion;
-                        rotationMulti = 0;
-                        break;
-                    case Cell.Direction.East | Cell.Direction.South | Cell.Direction.West:
-                        newTile = MazeTiles.Juntion;
-                        rotationMulti = 1;
-                        break;
-                    case Cell.Direction.South | Cell.Direction.West | Cell.Direction.North:
-                        newTile = MazeTiles.Juntion;
-                        rotationMulti = 2;
-                        break;
-                    case Cell.Direction.West | Cell.Direction.North | Cell.Direction.East:
-                        newTile = MazeTiles.Juntion;
-                        rotationMulti = 3;
-                        break;
-                    #endregion
-                    #region Crossroads
-                    case Cell.Direction.ALL:
-                        newTile = MazeTiles.Cross;
-                        rotationMulti = 0;
-                        break;
-                    #endregion
-                    case Cell.Direction.NONE:
-                    default:
-                        break;
-                }
+                SetTileForCell(maze, ref newTile, ref rotationMulti, y, x);
                 // Instantiate the tile
                 InstantiateTile(newTile, rotationMulti, y, x);
             }
         }
 
         // Instantiate Player Prefab
-        playerTransform = ((GameObject)Instantiate(playerPrefab, getVec3xz(maze.PlayerSpawn) * tileSize, Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), Vector3.up))).GetComponent<Transform>();
+        playerTransform = ((GameObject)Instantiate(playerPrefab, 
+            getVec3xz(maze.PlayerSpawn) * tileSize, 
+            Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), 
+            Vector3.up))).GetComponent<Transform>();
+
         playerTransform.GetComponent<PlayerController>().Init(this);
 
         // Instantiate Terminal Prefab
-        terminalTransform = ((GameObject)Instantiate(terminalPrefab, getVec3xz(maze.TerminalSpawn) * tileSize, Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), Vector3.up))).GetComponent<Transform>();
+        terminalTransform = ((GameObject)Instantiate(terminalPrefab, 
+            getVec3xz(maze.TerminalSpawn) * tileSize, 
+            Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), 
+            Vector3.up))).GetComponent<Transform>();
 
         // Instantiate Fragments
-        foreach (KeyValuePair<int, List<Vector2>> item in maze.FragmentSpawns)
+        foreach (Fragment currentFrag in maze.FragmentSpawns)
         {
-            foreach (Vector2 currentPos in item.Value)
-            {
 
-                Transform newFrag = ((GameObject)Instantiate(
-                    fragmentPrefabs[item.Key], 
-                    (getVec3xz(currentPos) * tileSize) + (Vector3.up * 3), 
-                    Quaternion.identity)
-                ).GetComponent<Transform>();
+            Transform newFrag = ((GameObject)Instantiate(
+                fragmentPrefab, 
+                (getVec3xz(currentFrag.Pos) * tileSize) + (Vector3.up * 3), 
+                Quaternion.identity)).GetComponent<Transform>();
 
-                spawnedFragments[item.Key].Add(newFrag);
-            }
+            newFrag.GetComponent<GameFragment>().Init(currentFrag.Value, fragmentMeshes[currentFrag.Value - 1]);
+            spawnedFragments.Add(newFrag);
+        }
+    }
+
+    private static void SetTileForCell(Maze maze, ref MazeTiles newTile, ref int rotationMulti, int y, int x)
+    {
+        switch (maze.Cells[x, y].Exits)
+        {
+            #region Deadends
+            case Cell.Direction.North:
+                newTile = MazeTiles.Deadend;
+                rotationMulti = 0;
+                break;
+            case Cell.Direction.East:
+                newTile = MazeTiles.Deadend;
+                rotationMulti = 1;
+                break;
+            case Cell.Direction.South:
+                newTile = MazeTiles.Deadend;
+                rotationMulti = 2;
+                break;
+            case Cell.Direction.West:
+                newTile = MazeTiles.Deadend;
+                rotationMulti = 3;
+                break;
+            #endregion
+            #region Corners
+            case Cell.Direction.North | Cell.Direction.East:
+                newTile = MazeTiles.Corner;
+                rotationMulti = 0;
+                break;
+            case Cell.Direction.East | Cell.Direction.South:
+                newTile = MazeTiles.Corner;
+                rotationMulti = 1;
+                break;
+            case Cell.Direction.South | Cell.Direction.West:
+                newTile = MazeTiles.Corner;
+                rotationMulti = 2;
+                break;
+            case Cell.Direction.West | Cell.Direction.North:
+                newTile = MazeTiles.Corner;
+                rotationMulti = 3;
+                break;
+            #endregion
+            #region Hallways
+            case Cell.Direction.North | Cell.Direction.South:
+                newTile = MazeTiles.Hallway;
+                rotationMulti = 0;
+                break;
+            case Cell.Direction.East | Cell.Direction.West:
+                newTile = MazeTiles.Hallway;
+                rotationMulti = 1;
+                break;
+            #endregion
+            #region Junctions
+            case Cell.Direction.North | Cell.Direction.East | Cell.Direction.South:
+                newTile = MazeTiles.Juntion;
+                rotationMulti = 0;
+                break;
+            case Cell.Direction.East | Cell.Direction.South | Cell.Direction.West:
+                newTile = MazeTiles.Juntion;
+                rotationMulti = 1;
+                break;
+            case Cell.Direction.South | Cell.Direction.West | Cell.Direction.North:
+                newTile = MazeTiles.Juntion;
+                rotationMulti = 2;
+                break;
+            case Cell.Direction.West | Cell.Direction.North | Cell.Direction.East:
+                newTile = MazeTiles.Juntion;
+                rotationMulti = 3;
+                break;
+            #endregion
+            #region Crossroads
+            case Cell.Direction.ALL:
+                newTile = MazeTiles.Cross;
+                rotationMulti = 0;
+                break;
+            #endregion
+            case Cell.Direction.NONE:
+            default:
+                break;
         }
     }
 
@@ -271,7 +264,9 @@ public class Game : MonoBehaviour
 
     public void CollectNumber(int _number)
     {
-
+        collectedSeed *= 10;
+        collectedSeed += (uint)_number;
+        Debug.Log("Seed = " + collectedSeed.ToString());
     }
 
     //public void GetDigits()
