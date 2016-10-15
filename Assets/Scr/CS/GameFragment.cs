@@ -23,6 +23,8 @@ public class GameFragment : MonoBehaviour
     private Animator _Animator;
     private MeshFilter _MeshFilter;
 
+    public int Number { get { return number; } }
+
     //public int Number { get { return number; } set { number = value; } }
 
     public void Start()

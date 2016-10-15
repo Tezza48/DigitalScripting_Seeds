@@ -17,8 +17,8 @@ public enum MazeTiles
 public class Game : MonoBehaviour
 {
     #region Gameplay Variables
-    private int level = 4;
-    private ulong collectedSeed;
+    private int level = 1;
+    private uint collectedSeed;
     #endregion
 
     private Maze maze;
@@ -26,14 +26,14 @@ public class Game : MonoBehaviour
     private PlayerController playerController;
 
     #region Object Pools
-    private Dictionary<MazeTiles, Transform> spawnedTiles;
-    private List<Transform> spawnedFragments;
+    //private List<Transform> spawnedTiles;
+    private List<GameObject> spawnedFragments;
     #endregion
 
     #region Transform Holders
-    private Transform mazeParent;
-    private Transform playerTransform;
-    private Transform terminalTransform;
+    private GameObject mazeParent;
+    private GameObject playerObject;
+    private GameObject terminalObject;
     #endregion
     
     #region Prefabs
@@ -69,10 +69,10 @@ public class Game : MonoBehaviour
     {
         maze = new Maze();
 
-        mazeParent = (new GameObject("Maze")).GetComponent<Transform>();
+        mazeParent = new GameObject("Maze");
 
-        spawnedTiles = new Dictionary<MazeTiles, Transform>();
-        spawnedFragments = new List<Transform>();
+        //spawnedTiles = new List<Transform>();
+        spawnedFragments = new List<GameObject>();
 
         canvas = FindObjectOfType<CanvasController>();
         
@@ -85,14 +85,15 @@ public class Game : MonoBehaviour
 	void Update ()
     {
         canvas.SetInteractText(playerController.Interaction);
+        if (Input.GetButtonDown("Submit"))
+            TerminalSubmit((uint)UnityEngine.Random.Range(int.MinValue, int.MaxValue));
 	}
 
     public void GenerateLevel(uint _seed)
     {
-        maze.Generate(level, level, new Vector2(level, Mathf.Pow(level, 2)/2), _seed);
-        InstantiateMaze(maze, level, level);
+        maze.Generate(SizeFromLevel(level), SizeFromLevel(level), FragmentGenRange(SizeFromLevel(level)), _seed);
+        InstantiateMaze(maze, SizeFromLevel(level), SizeFromLevel(level));
     }
-    
 
     private void InstantiateMaze(Maze maze, int width, int height)
     {
@@ -112,31 +113,60 @@ public class Game : MonoBehaviour
         }
 
         // Instantiate Player Prefab
-        playerTransform = ((GameObject)Instantiate(playerPrefab, 
-            getVec3xz(maze.PlayerSpawn) * tileSize, 
-            Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), 
-            Vector3.up))).GetComponent<Transform>();
-
-        playerTransform.GetComponent<PlayerController>().Init(this);
+        if(playerObject == null)
+        {
+            playerObject = (GameObject)Instantiate(playerPrefab, 
+                getVec3xz(maze.PlayerSpawn) * tileSize, 
+                Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), 
+                Vector3.up));
+            playerObject.GetComponent<PlayerController>().Init(this);
+        }
+        else
+        {
+            playerObject.transform.position = getVec3xz(maze.PlayerSpawn) * tileSize;
+            playerObject.transform.rotation = Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), Vector3.up);
+        }
 
         // Instantiate Terminal Prefab
-        terminalTransform = ((GameObject)Instantiate(terminalPrefab, 
-            getVec3xz(maze.TerminalSpawn) * tileSize, 
-            Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), 
-            Vector3.up))).GetComponent<Transform>();
+        if (terminalObject == null)
+        {
+            terminalObject = (GameObject)Instantiate(terminalPrefab, 
+                getVec3xz(maze.TerminalSpawn) * tileSize, 
+                Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), 
+                Vector3.up));
+        }
+        else
+        {
+            terminalObject.transform.position = getVec3xz(maze.TerminalSpawn) * tileSize;
+            terminalObject.transform.rotation = Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), Vector3.up);
+        }
 
         // Instantiate Fragments
         foreach (Fragment currentFrag in maze.FragmentSpawns)
         {
-
-            Transform newFrag = ((GameObject)Instantiate(
-                fragmentPrefab, 
-                (getVec3xz(currentFrag.Pos) * tileSize) + (Vector3.up * 3), 
-                Quaternion.identity)).GetComponent<Transform>();
-
-            newFrag.GetComponent<GameFragment>().Init(currentFrag.Value, fragmentMeshes[currentFrag.Value - 1]);
-            spawnedFragments.Add(newFrag);
+            InstantiatePooledFragment(currentFrag);
         }
+    }
+
+    private void InstantiatePooledFragment(Fragment currentFrag)
+    {
+        //for (int i = 0; i < spawnedFragments.Count; i++)
+        //{
+        //    if (!spawnedFragments[i].activeSelf && spawnedFragments[i].GetComponent<GameFragment>().Number == currentFrag.Value)
+        //    {
+        //        spawnedFragments[i].SetActive(true);
+        //        spawnedFragments[i].transform.position = (getVec3xz(currentFrag.Pos) * tileSize) + (Vector3.up * 3);
+        //        return;
+        //    }
+        //}
+        //GameObject newFrag = (GameObject)Instantiate(
+        //                fragmentPrefab,
+        //                (getVec3xz(currentFrag.Pos) * tileSize) + (Vector3.up * 3),
+        //                Quaternion.identity);
+
+        //newFrag.GetComponent<GameFragment>().Init(currentFrag.Value, fragmentMeshes[currentFrag.Value - 1]);
+        //newFrag.name = "Fragment: " + currentFrag.Value;
+        //spawnedFragments.Add(newFrag);
     }
 
     private static void SetTileForCell(Maze maze, ref MazeTiles newTile, ref int rotationMulti, int y, int x)
@@ -224,19 +254,20 @@ public class Game : MonoBehaviour
         switch (newTile)
         {
             case MazeTiles.Deadend:
-                Instantiate(deadend, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f), mazeParent);
+                InstantiatePooledTile(newTile, deadend, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f));
+                //Instantiate(deadend, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f), mazeParent);
                 break;
             case MazeTiles.Corner:
-                Instantiate(corner, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f), mazeParent);
+                InstantiatePooledTile(newTile, corner, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f));
                 break;
             case MazeTiles.Hallway:
-                Instantiate(hallway, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f), mazeParent);
+                InstantiatePooledTile(newTile, hallway, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f));
                 break;
             case MazeTiles.Juntion:
-                Instantiate(junction, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f), mazeParent);
+                InstantiatePooledTile(newTile, junction, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f));
                 break;
             case MazeTiles.Cross:
-                Instantiate(cross, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f), mazeParent);
+                InstantiatePooledTile(newTile, cross, new Vector3(x, 0f, -y) * tileSize, Quaternion.Euler(0f, 90f * rotationMulti, 0f));
                 break;
             case MazeTiles.NULL:
             default:
@@ -244,23 +275,59 @@ public class Game : MonoBehaviour
         }
     }
 
+    /*TODO: Make lookup table to link MazeTiles enum with corresponding Prefabs*/
+    private void InstantiatePooledTile(MazeTiles tileType, GameObject tile, Vector3 position, Quaternion rotation)
+    {
+        //check to see if we can use a tile with the right mesh from the 
+        for (int i = 0; i < mazeParent.transform.childCount; i++)
+        {
+            if (!mazeParent.transform.GetChild(i).gameObject.activeSelf && 
+                mazeParent.transform.GetChild(i).GetComponent<GameTile>().MazeTile == tileType)
+            {
+                mazeParent.transform.GetChild(i).gameObject.SetActive(true);
+                mazeParent.transform.GetChild(i).position = position;
+                mazeParent.transform.GetChild(i).rotation = rotation;
+                return;
+            }
+        }
+        Transform T_newTile = (
+            (GameObject)Instantiate(tile, position, rotation, mazeParent.transform)
+            ).GetComponent<Transform>();
+        T_newTile.GetComponent<GameTile>().MazeTile = tileType;
+    }
 
     #region Helper Methods
-    Vector3 getVec3xz(Vector2 xzVec)
-    {
-        return new Vector3(xzVec.x, 0, -xzVec.y);
-    }
+    private int SizeFromLevel(int _level) { return _level + 4; }
+
+    private Vector2 FragmentGenRange(int level) { return new Vector2(level, Mathf.Pow(level, 2) / 2); }
+
+    Vector3 getVec3xz(Vector2 xzVec) { return new Vector3(xzVec.x, 0, -xzVec.y); }
     #endregion
 
-    //public void TerminalSubmit(int _seed)
-    //{
+    public void TerminalSubmit(uint _seed)
+    {
+        if (_seed == collectedSeed || true)
+        {
+            collectedSeed = 0;
+            //setting tiles and fragments to inactive states
+            for(int i = 0; i < mazeParent.transform.childCount; i++)
+            {
+                mazeParent.transform.GetChild(i).gameObject.SetActive(false);
+            }
 
-    //}
+            for (int u = 0; u < spawnedFragments.Count; u++)
+            {
+                if (spawnedFragments[u].activeSelf)
+                {
+                    spawnedFragments[u].GetComponent<Animator>().SetTrigger("Reset");
+                }
+                spawnedFragments[u].SetActive(false);
+            }
 
-    //public void NoTimeLeft()
-    //{
-
-    //}
+            maze.Generate(SizeFromLevel(level), SizeFromLevel(level), FragmentGenRange(SizeFromLevel(level)), _seed);
+            InstantiateMaze(maze, SizeFromLevel(level), SizeFromLevel(level));
+        }
+    }
 
     public void CollectNumber(int _number)
     {
@@ -269,8 +336,4 @@ public class Game : MonoBehaviour
         Debug.Log("Seed = " + collectedSeed.ToString());
     }
 
-    //public void GetDigits()
-    //{
-
-    //}
 }
