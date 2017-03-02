@@ -1,5 +1,5 @@
 # DigitalScripting_Seeds
-1st Person Rougelike Maze Avoider game.
+Riguelike-like game, Currently in the process of porting all of the code to C#, and optimising/Itterating in the process.
 
 TODO:
 - [x] Add number spawns to generator
