@@ -10,7 +10,7 @@ public class Maze
     private Cell[,] cells;
     private Vector2 playerSpawn;
     private Vector2 terminalSpawn;
-    private List<Fragment> fragmentSpawns;
+    private List<Fragment> mFragments;
 
     private const int maxFragment = 9;
 
@@ -21,16 +21,13 @@ public class Maze
 
     public Vector2 PlayerSpawn { get { return playerSpawn; }}
 
-    public List<Fragment> FragmentSpawns { get { return fragmentSpawns; } } 
+    public List<Fragment> FragmentSpawns { get { return mFragments; } } 
     #endregion
 
     #region Constructors
     public Maze()
     {
-        //seed = 0;
-        //width = 0;
-        //height = 0; ;
-        fragmentSpawns = new List<Fragment>();
+        mFragments = new List<Fragment>();
     }
     #endregion
 
@@ -81,9 +78,9 @@ public class Maze
         for (int i = 0; i < fragsToSpawn; i++)
         {
             newFragment = new Fragment(
-                PickCartesian(_width, _height, fragmentSpawns),
+                PickCartesian(_width, _height, mFragments),
                 Random.Range(1, maxFragment + 1));
-            fragmentSpawns.Add(newFragment);
+            mFragments.Add(newFragment);
         }
     }
 
@@ -135,31 +132,38 @@ public class Maze
     private Vector2 PickCartesian(int _width, int _height, Vector2 check)
     {
         Vector2 newPos = Vector2.zero;
-        bool isValid = true;
-        do
+        bool isValid = false;
+        while (!isValid)
         {
             newPos = PickCartesian(_width, _height);
             // Check this vector against other points to make sure it's not overlapping an existing position
             isValid = !newPos.Equals(check);
         }
-        while (!isValid);
         return newPos;
     }
 
     private Vector2 PickCartesian(int _width, int _height, List<Fragment> exclude)
     {
         Vector2 newPos = Vector2.zero;
-        bool isValid = true;
-        do
+        bool isValid = false;
+        while (!isValid)
         {
             newPos = PickCartesian(_width, _height);
-            // Check this vector against other points to make sure it's not overlapping an existing positionforeach (Vector2 checkVec in pair.Value)
-            foreach(Fragment checkVec in exclude)
+            if (exclude.Count == 0)
             {
-                isValid = !newPos.Equals(checkVec);
+                break;
+            }
+            // Check this vector against other points to make sure it's not overlapping an existing positionforeach (Vector2 checkVec in pair.Value)
+            foreach(Fragment checkFrag in exclude)
+            {
+                isValid = (checkFrag.Pos != newPos);
+                if (isValid)
+                {
+                    break;
+                }
             }
         }
-        while (!isValid);
+        
         return newPos;
     }
     #endregion

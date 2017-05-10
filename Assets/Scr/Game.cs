@@ -22,12 +22,12 @@ public class Game : MonoBehaviour
     #endregion
 
     private Maze maze;
-    private CanvasController canvas;
+    //private CanvasController canvas;
     private PlayerController playerController;
 
     #region Object Pools
     //private List<Transform> spawnedTiles;
-    private List<GameObject> spawnedFragments;
+    private List<GameFragment> spawnedFragments;
     #endregion
 
     #region Transform Holders
@@ -52,7 +52,7 @@ public class Game : MonoBehaviour
     [Header("Spawn Prefabs")]
     public GameObject playerPrefab;
     public GameObject terminalPrefab;
-    public GameObject fragmentPrefab;
+    public GameFragment fragmentPrefab;
     [SerializeField]
     private Mesh[] fragmentMeshes;
 
@@ -71,10 +71,10 @@ public class Game : MonoBehaviour
 
         mazeParent = new GameObject("Maze");
 
-        //spawnedTiles = new List<Transform>();
-        spawnedFragments = new List<GameObject>();
+        // spawnedTiles = new List<Transform>();
+        spawnedFragments = new List<GameFragment>();
 
-        canvas = FindObjectOfType<CanvasController>();
+        // canvas = FindObjectOfType<CanvasController>();
         
         UnityEngine.Random.InitState(System.DateTime.UtcNow.TimeOfDay.Seconds);
 
@@ -84,9 +84,9 @@ public class Game : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        canvas.SetInteractText(playerController.Interaction);
-        if (Input.GetButtonDown("Submit"))
-            TerminalSubmit((uint)UnityEngine.Random.Range(int.MinValue, int.MaxValue));
+        //canvas.SetInteractText(playerController.Interaction);
+        //if (Input.GetButtonDown("Submit"))
+        //    TerminalSubmit((uint)UnityEngine.Random.Range(int.MinValue, int.MaxValue));
 	}
 
     public void GenerateLevel(uint _seed)
@@ -130,10 +130,7 @@ public class Game : MonoBehaviour
         // Instantiate Terminal Prefab
         if (terminalObject == null)
         {
-            terminalObject = (GameObject)Instantiate(terminalPrefab, 
-                getVec3xz(maze.TerminalSpawn) * tileSize, 
-                Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), 
-                Vector3.up));
+            terminalObject = (GameObject)Instantiate(terminalPrefab, getVec3xz(maze.TerminalSpawn) * tileSize, Quaternion.AngleAxis(UnityEngine.Random.Range(0, 360), Vector3.up));
         }
         else
         {
@@ -150,23 +147,42 @@ public class Game : MonoBehaviour
 
     private void InstantiatePooledFragment(Fragment currentFrag)
     {
-        //for (int i = 0; i < spawnedFragments.Count; i++)
-        //{
-        //    if (!spawnedFragments[i].activeSelf && spawnedFragments[i].GetComponent<GameFragment>().Number == currentFrag.Value)
-        //    {
-        //        spawnedFragments[i].SetActive(true);
-        //        spawnedFragments[i].transform.position = (getVec3xz(currentFrag.Pos) * tileSize) + (Vector3.up * 3);
-        //        return;
-        //    }
-        //}
-        //GameObject newFrag = (GameObject)Instantiate(
-        //                fragmentPrefab,
-        //                (getVec3xz(currentFrag.Pos) * tileSize) + (Vector3.up * 3),
-        //                Quaternion.identity);
+        /*
+        Create the requested fragment but check to see if there is a pooled one
+        already would like to use a dictionary in the future for speed's sake
+         */
 
-        //newFrag.GetComponent<GameFragment>().Init(currentFrag.Value, fragmentMeshes[currentFrag.Value - 1]);
-        //newFrag.name = "Fragment: " + currentFrag.Value;
-        //spawnedFragments.Add(newFrag);
+        // See if there's already a pooled Fragment with this number
+        for (int i = 0; i < spawnedFragments.Count; i++)
+        {
+            // is this frag invisible
+            if (!spawnedFragments[i].gameObject.activeSelf)
+            {
+                // has it got the right number mesh on it (nope, gotta do it now)
+                bool isSameNumber = spawnedFragments[i].Number == currentFrag.Number;
+                if (isSameNumber)
+                {
+                    // reactivate it
+                    spawnedFragments[i].gameObject.SetActive(true);
+                    // Move it to the right position
+                    spawnedFragments[i].transform.position = (getVec3xz(currentFrag.Pos) * tileSize) + (Vector3.up * 3);
+                    // return as we're finished
+                    return;
+                }
+            }
+        }
+
+        // If we've gotten here there isnt so we will instantiate a new one
+        GameFragment newFrag = (GameFragment)Instantiate(fragmentPrefab,(getVec3xz(currentFrag.Pos) * tileSize) + (Vector3.up * 2), Quaternion.identity);
+
+        // init it with the right number, this sets the frag's number and assigns the right mesh
+        newFrag.Init(currentFrag.Number, fragmentMeshes[currentFrag.Number - 1]);
+
+        // Name it for debugging purposes
+        newFrag.name = "Fragment: " + currentFrag.Number;
+        // Add the new frag to the pool
+        spawnedFragments.Add(newFrag);
+        return;
     }
 
     private static void SetTileForCell(Maze maze, ref MazeTiles newTile, ref int rotationMulti, int y, int x)
@@ -297,11 +313,20 @@ public class Game : MonoBehaviour
     }
 
     #region Helper Methods
-    private int SizeFromLevel(int _level) { return _level + 4; }
+    private int SizeFromLevel(int _level)
+    {
+        return _level + 4;
+    }
 
-    private Vector2 FragmentGenRange(int level) { return new Vector2(level, Mathf.Pow(level, 2) / 2); }
+    private Vector2 FragmentGenRange(int level)
+    {
+        return new Vector2(level, Mathf.Pow(level, 2) / 2);
+    }
 
-    Vector3 getVec3xz(Vector2 xzVec) { return new Vector3(xzVec.x, 0, -xzVec.y); }
+    Vector3 getVec3xz(Vector2 xzVec)
+    {
+        return new Vector3(xzVec.x, 0, -xzVec.y);
+    }
     #endregion
 
     public void TerminalSubmit(uint _seed)
@@ -317,11 +342,11 @@ public class Game : MonoBehaviour
 
             for (int u = 0; u < spawnedFragments.Count; u++)
             {
-                if (spawnedFragments[u].activeSelf)
+                if (spawnedFragments[u].gameObject.activeSelf)
                 {
                     spawnedFragments[u].GetComponent<Animator>().SetTrigger("Reset");
                 }
-                spawnedFragments[u].SetActive(false);
+                spawnedFragments[u].gameObject.SetActive(false);
             }
 
             maze.Generate(SizeFromLevel(level), SizeFromLevel(level), FragmentGenRange(SizeFromLevel(level)), _seed);

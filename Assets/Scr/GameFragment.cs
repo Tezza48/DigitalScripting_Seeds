@@ -8,7 +8,7 @@ public struct Fragment
 
     public Vector2 Pos { get { return pos; } set { pos = value; } }
 
-    public int Value { get { return value; } set { this.value = value; } }
+    public int Number { get { return value; } set { this.value = value; } }
 
     public Fragment(Vector2 _pos, int _value)
     {
